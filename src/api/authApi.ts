@@ -6,10 +6,7 @@ const authApi = {
   register(payload: Partial<IUser>): Promise<IResponse<any>> {
     return axiosClient.post("/auth/register", payload);
   },
-  login(payload: {
-    username: string;
-    password: string;
-  }): Promise<IResponse<any>> {
+  login(payload: FormData): Promise<IResponse<any>> {
     return axiosClient.post("/auth/login", payload);
   },
 };

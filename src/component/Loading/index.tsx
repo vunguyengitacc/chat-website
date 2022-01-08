@@ -3,13 +3,7 @@ import "component/Loading/style.css";
 
 const Loading = () => {
   return (
-    <Box
-      width="100%"
-      height="100%"
-      sx={{
-        backgroundColor: "red",
-      }}
-    >
+    <Box width="100%" height="100%">
       <div className="wrapper">
         <div className="circle"></div>
         <div className="circle"></div>

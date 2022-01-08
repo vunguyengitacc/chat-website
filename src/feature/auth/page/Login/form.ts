@@ -16,4 +16,9 @@ const scheme = yup
   })
   .required();
 
+export interface ILoginParams {
+  username: string;
+  password: string;
+}
+
 export default scheme;

@@ -16,7 +16,10 @@ const initialState: AuthState = {
 export const login = createAsyncThunk(
   "auth/login",
   async (payload: { username: string; password: string }) => {
-    const res = await authApi.login(payload);
+    let frm = new FormData();
+    frm.append("username", payload.username);
+    frm.append("password", payload.password);
+    const res = await authApi.login(frm);
     return res.data;
   }
 );

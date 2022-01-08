@@ -1,10 +1,11 @@
 import React from "react";
 import "feature/not-found/style.css";
 import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
 
 const NotFoundFeature = () => {
   return (
-    <div>
+    <Box height="100vh">
       <p className="zoom-area">The page you're looking isn't here</p>
       <section className="error-container">
         <span className="four">
@@ -22,7 +23,7 @@ const NotFoundFeature = () => {
           Visit home page
         </Link>
       </div>
-    </div>
+    </Box>
   );
 };
 

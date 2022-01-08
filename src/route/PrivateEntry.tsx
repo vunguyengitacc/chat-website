@@ -5,7 +5,7 @@ import { RootState } from "../app/reduxStore";
 const PrivateEntry = () => {
   const isAuth = useSelector((state: RootState) => state.authReducer.isAuth);
 
-  return isAuth ? <Outlet /> : <Navigate to="/home" />;
+  return isAuth ? <Outlet /> : <Navigate to="/auth/login" />;
 };
 
 export default PrivateEntry;

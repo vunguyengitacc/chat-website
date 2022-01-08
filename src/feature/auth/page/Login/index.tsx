@@ -1,14 +1,24 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useLoginPageStyle from "./style";
-import scheme from "./form";
+import scheme, { ILoginParams } from "./form";
 import TextInput from "component/Input/TextInput";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "app/reduxStore";
+import { getMe, login } from "feature/auth/authSlice";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { useState } from "react";
+import { LoadingButton } from "@mui/lab";
 
 const Login = () => {
+  const [isLoad, setIsLoad] = useState<boolean>();
+
   const style = useLoginPageStyle();
-  const form = useForm<any>({
+  const dispatch = useDispatch<AppDispatch>();
+  const navigator = useNavigate();
+  const form = useForm<ILoginParams>({
     mode: "onSubmit",
     reValidateMode: "onChange",
     defaultValues: {
@@ -18,8 +28,16 @@ const Login = () => {
     resolver: yupResolver(scheme),
   });
 
-  const submitLogin = async (data: any) => {
-    console.log(data);
+  const submitLogin = async (data: ILoginParams) => {
+    try {
+      setIsLoad(true);
+      await dispatch(login(data)).then(unwrapResult);
+      await dispatch(getMe()).then(unwrapResult);
+      navigator("/app");
+    } catch (error) {
+      setIsLoad(false);
+      console.log(error);
+    }
   };
   return (
     <Box className={style.surface}>
@@ -43,16 +61,17 @@ const Login = () => {
             fullWidth
             placeHolder="Passowrd"
           />
-          <Button
+          <LoadingButton
             className={style.btnLogin}
             fullWidth
-            variant="contained"
-            color="success"
-            disableElevation
             type="submit"
+            loading={isLoad}
+            variant="contained"
+            disableElevation
+            color="success"
           >
-            Login
-          </Button>
+            LOGIN
+          </LoadingButton>
         </form>
         <Link to="/auth/register">
           <Typography variant="subtitle1">Don't have an account?</Typography>
