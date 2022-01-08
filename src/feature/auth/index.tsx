@@ -9,7 +9,7 @@ const AuthFeature = () => {
     <Box className={style.surface}>
       <Paper elevation={3} className={style.content}>
         <Box className={style.logoField}>
-          <img src={logoAuth} style={{ width: "80%" }} />
+          <img alt="Authentication" src={logoAuth} style={{ width: "80%" }} />
         </Box>
         <Box width="50%">
           <Outlet />

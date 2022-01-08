@@ -1,5 +1,4 @@
 import { createTheme } from "@mui/material/styles";
-import { deepmerge } from "@mui/utils";
 
 declare module "@mui/material/Typography" {
   interface TypographyPropsVariantOverrides {
@@ -53,6 +52,15 @@ const themeTypography = {
 
 const theme = createTheme({
   ...themeTypography,
+  palette: {
+    success: {
+      main: "#91ff35",
+    },
+    primary: {
+      main: "#4dabf5",
+    },
+  },
+  components: {},
 });
 
 export default theme;
