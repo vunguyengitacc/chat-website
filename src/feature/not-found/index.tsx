@@ -1,7 +1,29 @@
 import React from "react";
+import "feature/not-found/style.css";
+import { Link } from "react-router-dom";
 
 const NotFoundFeature = () => {
-  return <div>Not found</div>;
+  return (
+    <div>
+      <p className="zoom-area">The page you're looking isn't here</p>
+      <section className="error-container">
+        <span className="four">
+          <span className="screen-reader-text">4</span>
+        </span>
+        <span className="zero">
+          <span className="screen-reader-text">0</span>
+        </span>
+        <span className="four">
+          <span className="screen-reader-text">4</span>
+        </span>
+      </section>
+      <div className="link-container">
+        <Link className="more-link" to="home">
+          Visit home page
+        </Link>
+      </div>
+    </div>
+  );
 };
 
 export default NotFoundFeature;

@@ -1,3 +1,4 @@
+import Loading from "component/Loading";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import "./App.css";
@@ -13,7 +14,7 @@ function App() {
     dispatch(getMe()).then(() => setIsTryLoad(true));
   }, []);
 
-  return isTryLoad ? <MasterRoute /> : <></>;
+  return isTryLoad ? <MasterRoute /> : <Loading />;
 }
 
 export default App;
