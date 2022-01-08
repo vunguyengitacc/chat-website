@@ -1,6 +1,6 @@
 import { makeStyles } from "@mui/styles";
 
-const useFriendListStyle = makeStyles({
+const useRoomListSidebarStyle = makeStyles({
   surface: {
     backgroundColor: "#f9f9f9",
     width: "100%",
@@ -11,11 +11,11 @@ const useFriendListStyle = makeStyles({
   },
   header: {
     width: "100%",
-    height: "12.5%",
+    height: "15%",
     backgroundColor: "white",
     borderBottom: "solid .5px #e7e7e7",
   },
-  list: { width: "100%", height: "87.5%" },
+  list: { width: "100%", height: "85%" },
 });
 
-export default useFriendListStyle;
+export default useRoomListSidebarStyle;

@@ -1,10 +1,10 @@
 import { Box } from "@mui/material";
 import React from "react";
 import FriendHeader from "../FriendHeader";
-import useFriendListStyle from "./style";
+import useFriendSidebarStyle from "./style";
 
-const FriendList = () => {
-  const style = useFriendListStyle();
+const FriendSidebar = () => {
+  const style = useFriendSidebarStyle();
   return (
     <Box className={style.surface}>
       <Box className={style.header}>
@@ -15,4 +15,4 @@ const FriendList = () => {
   );
 };
 
-export default FriendList;
+export default FriendSidebar;

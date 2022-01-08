@@ -11,6 +11,7 @@ import { getMe, login } from "feature/auth/authSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [isLoad, setIsLoad] = useState<boolean>();
@@ -34,8 +35,9 @@ const Login = () => {
       await dispatch(login(data)).then(unwrapResult);
       await dispatch(getMe()).then(unwrapResult);
       navigator("/app");
-    } catch (error) {
+    } catch (error: any) {
       setIsLoad(false);
+      toast.error(error.message);
       console.log(error);
     }
   };

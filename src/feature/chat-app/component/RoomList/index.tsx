@@ -1,16 +1,24 @@
 import { Box } from "@mui/material";
 import React from "react";
-import Header from "../ChatHeader";
+import RoomItem from "../RoomItem";
 import useRoomListStyle from "./style";
 
 const RoomList = () => {
   const style = useRoomListStyle();
   return (
     <Box className={style.surface}>
-      <Box className={style.header}>
-        <Header />
+      <Box className={style.itemSpace}>
+        <RoomItem roomId="1" />
       </Box>
-      <Box className={style.list}>List here</Box>
+      <Box className={style.itemSpace}>
+        <RoomItem roomId="2" />
+      </Box>
+      <Box className={style.itemSpace}>
+        <RoomItem roomId="3" />
+      </Box>
+      <Box className={style.itemSpace}>
+        <RoomItem roomId="4" />
+      </Box>
     </Box>
   );
 };

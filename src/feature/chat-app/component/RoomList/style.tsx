@@ -1,21 +1,17 @@
 import { makeStyles } from "@mui/styles";
+import { height } from "@mui/system";
 
 const useRoomListStyle = makeStyles({
   surface: {
-    backgroundColor: "#f9f9f9",
     width: "100%",
     height: "100%",
-    display: "flex",
-    flexDirection: "column",
-    borderRight: "solid .5px #e7e7e7",
+    overflow: "hidden",
   },
-  header: {
+  itemSpace: {
     width: "100%",
-    height: "15%",
-    backgroundColor: "white",
+    height: "100px",
     borderBottom: "solid .5px #e7e7e7",
   },
-  list: { width: "100%", height: "85%" },
 });
 
 export default useRoomListStyle;

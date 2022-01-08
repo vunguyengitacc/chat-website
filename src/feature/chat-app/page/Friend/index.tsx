@@ -1,12 +1,12 @@
 import { Box } from "@mui/material";
 import React from "react";
-import FriendList from "feature/chat-app/component/FriendList";
+import FriendSidebar from "feature/chat-app/component/FriendSidebar";
 
 const FriendPage = () => {
   return (
     <Box display="flex">
       <Box width="35%" height="100vh">
-        <FriendList />
+        <FriendSidebar />
       </Box>
       <Box width="65%" height="100vh">
         Hello

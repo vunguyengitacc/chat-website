@@ -45,9 +45,11 @@ const ToolBar = () => {
           <AccountCircleIcon />
         </NavLink>
       </Box>
-      <Button onClick={logoutHandler} className={style.link}>
-        <LogoutIcon />
-      </Button>
+      <Box sx={{ borderTop: "solid .5px #e7e7e7" }}>
+        <Button onClick={logoutHandler} className={style.link}>
+          <LogoutIcon />
+        </Button>
+      </Box>
     </Box>
   );
 };
