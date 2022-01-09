@@ -9,7 +9,6 @@ const useUserSidebarStyle = makeStyles({
   },
   header: {
     width: "100%",
-    height: "90px",
     borderBottom: "solid .5px #e7e7e7",
     padding: "10px",
   },

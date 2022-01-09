@@ -60,7 +60,11 @@ const theme = createTheme({
       main: "#4dabf5",
     },
   },
-  components: {},
+  components: {
+    MuiInputBase: {
+      styleOverrides: {},
+    },
+  },
 });
 
 export default theme;

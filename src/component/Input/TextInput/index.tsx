@@ -1,8 +1,10 @@
 import {
   FormControl,
   FormHelperText,
+  InputBase,
   OutlinedInput,
   SxProps,
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { Controller, UseFormReturn } from "react-hook-form";
@@ -33,12 +35,18 @@ const TextInput: React.FC<ITextInputProps> = ({ name, form, ...other }) => {
           variant="outlined"
           error={hasError}
           fullWidth={other.fullWidth}
+          sx={{ width: "100%" }}
         >
           <>
-            <OutlinedInput
+            <Typography variant="subtitle2">{other.label}</Typography>
+            <InputBase
+              sx={{
+                border: "solid .5px #e7e7e7",
+                padding: "5px",
+                borderRadius: "3px",
+              }}
               fullWidth
               {...field}
-              label={other.label}
               placeholder={other.placeHolder}
               className={other.className}
             />

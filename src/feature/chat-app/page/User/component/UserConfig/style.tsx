@@ -9,14 +9,13 @@ const useUserConfigStyle = makeStyles({
   },
   header: {
     width: "100%",
-    height: "90px",
     borderBottom: "solid .5px #e7e7e7",
     padding: "10px",
   },
   config: {
     width: "100%",
-    height: "100vh",
     overflowY: "scroll",
+    padding: "30px 5% 30px 5%",
   },
 });
 
