@@ -19,7 +19,7 @@ export const registerSchema = yup
       .string()
       //   .matches(/^[0-9A-Za-z]+$/, "Please enter only alphanum type")
       .oneOf([yup.ref("password")], "Confirm password must match password"),
-    fullname: yup
+    name: yup
       .string()
       .required("Please enter your full name")
       .matches(/^[0-9A-Za-z]+$/, "Please enter only alphanum type")
@@ -31,6 +31,6 @@ export const registerSchema = yup
 export interface IRegisterFormValues {
   username: string;
   password: string;
-  fullname: string;
+  name: string;
   passwordConfirm: string;
 }

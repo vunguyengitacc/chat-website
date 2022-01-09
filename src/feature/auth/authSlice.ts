@@ -26,7 +26,7 @@ export const login = createAsyncThunk(
 
 export const register = createAsyncThunk(
   "auth/register",
-  async (payload: { username: string; password: string }) => {
+  async (payload: Partial<IUser>) => {
     const res = await authApi.register(payload);
     return res.data;
   }
