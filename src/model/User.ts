@@ -11,5 +11,7 @@ export interface IUser {
   address: string;
   bio: string;
   members?: IMember[];
-  friends?: IUser[];
+  friends: IUser[];
+  requests: IUser[];
+  waits: IUser[];
 }
