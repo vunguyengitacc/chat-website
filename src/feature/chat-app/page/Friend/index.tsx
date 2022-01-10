@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
-import FriendSidebar from "feature/chat-app/component/FriendSidebar";
+import FriendSidebar from "./component/FriendSidebar";
 
 const FriendPage = () => {
   return (

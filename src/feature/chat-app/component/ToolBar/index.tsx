@@ -9,6 +9,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "app/reduxStore";
 import { logout } from "feature/auth/authSlice";
+import SearchIcon from "@mui/icons-material/Search";
 
 const ToolBar = () => {
   const style = useToolBarStyle();
@@ -29,6 +30,13 @@ const ToolBar = () => {
           to="/app/chat"
         >
           <ChatIcon />
+        </NavLink>
+        <NavLink
+          style={({ isActive }) => (isActive ? activeStyle : {})}
+          className={style.link}
+          to="/app/search"
+        >
+          <SearchIcon />
         </NavLink>
         <NavLink
           style={({ isActive }) => (isActive ? activeStyle : {})}

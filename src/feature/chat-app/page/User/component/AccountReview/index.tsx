@@ -7,6 +7,8 @@ import ReviewItem from "../ReviewItem";
 import AbcIcon from "@mui/icons-material/Abc";
 import EmailIcon from "@mui/icons-material/Email";
 import LogoutIcon from "@mui/icons-material/Logout";
+import HomeIcon from "@mui/icons-material/Home";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
 const AccountReview = () => {
   const style = useAccountReviewStyle();
@@ -47,6 +49,20 @@ const AccountReview = () => {
           value={currentUser?.email !== undefined ? currentUser?.email : "None"}
         >
           <EmailIcon />
+        </ReviewItem>
+        <ReviewItem
+          label="Phone"
+          value={currentUser?.phone !== undefined ? currentUser?.phone : "None"}
+        >
+          <LocalPhoneIcon />
+        </ReviewItem>
+        <ReviewItem
+          label="Address"
+          value={
+            currentUser?.address !== undefined ? currentUser?.address : "None"
+          }
+        >
+          <HomeIcon />
         </ReviewItem>
       </Card>
     </Box>

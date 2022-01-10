@@ -5,29 +5,13 @@ const updateUserScheme = yup
   .shape({
     name: yup
       .string()
-      .required("Please enter username")
+      .required("Please enter your name")
       .min(8, "Please enter at least 8 characters.")
       .max(20, "Please enter at most 20 characters"),
-    address: yup
-      .string()
-      .required("Please enter password")
-      .min(8, "Please enter at least 8 characters.")
-      .max(20, "Please enter at most 20 characters"),
-    phone: yup
-      .string()
-      .required("Please enter password")
-      .min(8, "Please enter at least 8 characters.")
-      .max(20, "Please enter at most 20 characters"),
-    email: yup
-      .string()
-      .required("Please enter password")
-      .min(8, "Please enter at least 8 characters.")
-      .max(20, "Please enter at most 20 characters"),
-    bio: yup
-      .string()
-      .required("Please enter password")
-      .min(8, "Please enter at least 8 characters.")
-      .max(20, "Please enter at most 20 characters"),
+    address: yup.string().max(20, "Please enter at most 20 characters"),
+    phone: yup.string(),
+    email: yup.string(),
+    bio: yup.string().max(300, "Please enter at most 300 characters"),
   })
   .required();
 

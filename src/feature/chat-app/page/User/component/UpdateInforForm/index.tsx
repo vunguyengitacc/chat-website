@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Grid } from "@mui/material";
 import useUpdateInforFormStyle from "./style";
 import { useForm } from "react-hook-form";
 import updateUserScheme, { IUpdateUserParams } from "./form";
-import { useSelector } from "react-redux";
-import { RootState } from "app/reduxStore";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "app/reduxStore";
 import { yupResolver } from "@hookform/resolvers/yup";
 import TextInput from "component/Input/TextInput";
+import { updateMe } from "feature/auth/authSlice";
+import toast from "react-hot-toast";
+import { unwrapResult } from "@reduxjs/toolkit";
+import { LoadingButton } from "@mui/lab";
 
 const UpdateInforForm = () => {
+  const [isLoad, setIsLoad] = useState<boolean>(false);
+
   const currentUser = useSelector(
     (state: RootState) => state.authReducer.currentUser
   );
@@ -18,16 +24,25 @@ const UpdateInforForm = () => {
     reValidateMode: "onChange",
     defaultValues: {
       name: currentUser?.name,
-      email: currentUser?.email,
-      address: "",
-      phone: "",
-      bio: "",
+      email: currentUser?.email === null ? "" : currentUser?.email,
+      address: currentUser?.address === null ? "" : currentUser?.address,
+      phone: currentUser?.phone === null ? "" : currentUser?.phone,
+      bio: currentUser?.bio === null ? "" : currentUser?.bio,
     },
     resolver: yupResolver(updateUserScheme),
   });
+  const dispatch = useDispatch<AppDispatch>();
 
-  const updateHandler = (data: IUpdateUserParams) => {
-    console.log(data);
+  const updateHandler = async (data: IUpdateUserParams) => {
+    try {
+      setIsLoad(true);
+      await dispatch(updateMe(data)).then(unwrapResult);
+      toast.success("Success");
+      setIsLoad(false);
+    } catch (error: any) {
+      setIsLoad(false);
+      toast.error(error.message);
+    }
   };
 
   return (
@@ -54,9 +69,15 @@ const UpdateInforForm = () => {
           <Button variant="text" color="secondary" disableElevation>
             Reset
           </Button>
-          <Button variant="contained" color="secondary" disableElevation>
+          <LoadingButton
+            type="submit"
+            loading={isLoad}
+            variant="contained"
+            disableElevation
+            color="secondary"
+          >
             Save changes
-          </Button>
+          </LoadingButton>
         </Box>
       </Box>
     </form>

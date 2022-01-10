@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import RoomListSidebar from "feature/chat-app/component/RoomListSidebar";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import RoomListSidebar from "./component/RoomListSidebar";
 
 const ChatPage = () => {
   return (

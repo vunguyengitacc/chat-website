@@ -7,5 +7,9 @@ export interface IUser {
   name: string;
   email: string;
   avatarURI: string;
+  phone: string;
+  address: string;
+  bio: string;
   members?: IMember[];
+  friends?: IUser[];
 }

@@ -37,6 +37,22 @@ export const getMe = createAsyncThunk("auth/getMe", async () => {
   return res.data;
 });
 
+export const updateMe = createAsyncThunk(
+  "auth/updateMe",
+  async (payload: Partial<IUser>) => {
+    const res = await userApi.updateMe(payload);
+    return res.data;
+  }
+);
+export const updatePassword = createAsyncThunk(
+  "auth/updatePassword",
+  async (payload: { currentPassword: string; newPassword: string }) => {
+    const res = await userApi.updatePassword(payload);
+    console.log(res);
+    return res.data;
+  }
+);
+
 const authSlice = createSlice({
   name: "authSlice",
   initialState,
@@ -83,6 +99,23 @@ const authSlice = createSlice({
       getMe.fulfilled,
       (state, { payload }: PayloadAction<IUser>) => {
         console.log(payload);
+        state.currentUser = payload;
+        state.isAuth = true;
+      }
+    );
+    builder.addCase(updateMe.rejected, (state) => {});
+    builder.addCase(updateMe.pending, (state) => {});
+    builder.addCase(
+      updateMe.fulfilled,
+      (state, { payload }: PayloadAction<IUser>) => {
+        state.currentUser = payload;
+      }
+    );
+    builder.addCase(updatePassword.rejected, (state) => {});
+    builder.addCase(updatePassword.pending, (state) => {});
+    builder.addCase(
+      updatePassword.fulfilled,
+      (state, { payload }: PayloadAction<IUser>) => {
         state.currentUser = payload;
         state.isAuth = true;
       }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Box, Button, Grid } from "@mui/material";
-import useUpdateInforFormStyle from "./style";
 import { useForm } from "react-hook-form";
 import { IUpdatePasswordParams } from "./form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -12,11 +11,12 @@ import toast from "react-hot-toast";
 import { LoadingButton } from "@mui/lab";
 import { updatePassword } from "feature/auth/authSlice";
 import { unwrapResult } from "@reduxjs/toolkit";
+import useUpdatePrivacyFormStyle from "./style";
 
-const ChangePasswordForm = () => {
+const UpdatePrivacyForm = () => {
   const [isLoad, setIsLoad] = useState<boolean>(false);
 
-  const style = useUpdateInforFormStyle();
+  const style = useUpdatePrivacyFormStyle();
   const form = useForm<IUpdatePasswordParams>({
     mode: "onSubmit",
     reValidateMode: "onChange",
@@ -44,23 +44,11 @@ const ChangePasswordForm = () => {
   return (
     <form onSubmit={form.handleSubmit(updateHandler)} className={style.surface}>
       <Grid container className={style.inputGroup}>
-        <Grid item xs={6} className={style.inputItemLeft}>
-          <TextInput
-            form={form}
-            name="currentPassword"
-            label="Current password"
-          />
+        <Grid item xs={12}>
+          a
         </Grid>
-        <Grid item xs={6} className={style.inputItemRight}></Grid>
-        <Grid item xs={6} className={style.inputItemLeft}>
-          <TextInput form={form} name="newPassword" label="New password" />
-        </Grid>
-        <Grid item xs={6} className={style.inputItemRight}>
-          <TextInput
-            form={form}
-            name="repeatPassword"
-            label="Repeat password"
-          />
+        <Grid item xs={12}>
+          b
         </Grid>
       </Grid>
       <Box className={style.submitField}>
@@ -69,7 +57,6 @@ const ChangePasswordForm = () => {
             Reset
           </Button>
           <LoadingButton
-            type="submit"
             loading={isLoad}
             variant="contained"
             disableElevation
@@ -83,4 +70,4 @@ const ChangePasswordForm = () => {
   );
 };
 
-export default ChangePasswordForm;
+export default UpdatePrivacyForm;

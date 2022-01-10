@@ -11,7 +11,11 @@ import AuthEntry from "./AuthEntry";
 import PrivateEntry from "./PrivateEntry";
 import UserPage from "feature/chat-app/page/User";
 import FriendPage from "feature/chat-app/page/Friend";
-import ChatBox from "feature/chat-app/component/ChatBox";
+import ChatBox from "feature/chat-app/page/ChatPage/component/ChatBox";
+import SearchPage from "feature/chat-app/page/SearchPage";
+import UserResult from "feature/chat-app/page/SearchPage/component/ListResult/UserResult";
+import AllResult from "feature/chat-app/page/SearchPage/component/ListResult/AllResult";
+import GroupResult from "feature/chat-app/page/SearchPage/component/ListResult/GroupResult";
 
 const MasterRoute = () => {
   return (
@@ -31,6 +35,12 @@ const MasterRoute = () => {
             <Route path="" element={<Navigate to="chat" />} />
             <Route path="chat" element={<ChatPage />}>
               <Route path=":id" element={<ChatBox />} />
+            </Route>
+            <Route path="search" element={<SearchPage />}>
+              <Route path="" element={<Navigate to="all" />} />
+              <Route path="all" element={<AllResult />} />
+              <Route path="user" element={<UserResult />} />
+              <Route path="group" element={<GroupResult />} />
             </Route>
             <Route path="friend" element={<FriendPage />} />
             <Route path="me" element={<UserPage />} />

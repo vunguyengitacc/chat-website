@@ -3,6 +3,7 @@ import React from "react";
 import ChangePasswordForm from "../ChangePasswordForm";
 import ProfileFormBox from "../ProfileFormBox";
 import UpdateInforForm from "../UpdateInforForm";
+import UpdatePrivacyForm from "../UpdatePrivacyForm";
 import useUserConfigStyle from "./style";
 
 const UserConfig = () => {
@@ -27,6 +28,14 @@ const UserConfig = () => {
         <Box marginTop="30px">
           <ProfileFormBox name="Password" desc="Update password">
             <ChangePasswordForm />
+          </ProfileFormBox>
+        </Box>
+        <Box marginTop="30px">
+          <ProfileFormBox
+            name="Security"
+            desc="Update your custom account privacy"
+          >
+            <UpdatePrivacyForm />
           </ProfileFormBox>
         </Box>
       </Box>

@@ -25,7 +25,6 @@ const TextInput: React.FC<ITextInputProps> = ({ name, form, ...other }) => {
   const { errors } = form.formState;
   const hasError = !!errors[name];
 
-  console.log(errors[name]?.message, hasError);
   return (
     <Controller
       control={form.control}
