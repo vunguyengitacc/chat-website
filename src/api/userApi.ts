@@ -21,6 +21,22 @@ const userApi = {
   }): Promise<IResponse<IUser>> {
     return axiosClient.put("/users/me/password", payload);
   },
+  //need review again
+  sendRequest(payload: Number): Promise<IResponse<any>> {
+    return axiosClient.post(`/users/me/request/${payload}`);
+  },
+  acceptRequest(payload: Number): Promise<IResponse<any>> {
+    return axiosClient.put(`/users/me/request/${payload}`);
+  },
+  denyRequest(payload: Number): Promise<IResponse<any>> {
+    return axiosClient.delete(`/users/me/request/${payload}`);
+  },
+  cancelRequest(payload: Number): Promise<IResponse<any>> {
+    return axiosClient.delete(`/users/me/request/${payload}/cancel`);
+  },
+  removeFriend(payload: Number): Promise<IResponse<any>> {
+    return axiosClient.delete(`/users/me/friend/${payload}`);
+  },
 };
 
 export default userApi;
