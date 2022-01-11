@@ -1,6 +1,7 @@
 import { Box, Button } from "@mui/material";
 import React from "react";
 import { Outlet } from "react-router-dom";
+import FastSearchSidebar from "./component/FastSearchSidebar";
 import FilterSidebar from "./component/FilterSidebar";
 import SearchBar from "./component/SearchBar";
 import useSearchPageStyle from "./style";
@@ -17,6 +18,7 @@ const SearchPage = () => {
       <Box className={style.resultField}>
         <Box className={style.filterBar}>
           <FilterSidebar />
+          <FastSearchSidebar />
         </Box>
         <Box className={style.lstResult}>
           <Outlet />

@@ -6,6 +6,7 @@ import { AppDispatch } from "app/reduxStore";
 import PasswordInput from "component/Input/PasswordInput";
 import TextInput from "component/Input/TextInput";
 import { getMe, register } from "feature/auth/authSlice";
+import { reset } from "feature/chat-app/page/SearchPage/searchSlice";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -37,6 +38,7 @@ const Register = () => {
       setIsLoad(true);
       await dispatch(register(data)).then(unwrapResult);
       await dispatch(getMe()).then(unwrapResult);
+      await dispatch(reset());
       navigator("/app");
     } catch (error: any) {
       setIsLoad(false);

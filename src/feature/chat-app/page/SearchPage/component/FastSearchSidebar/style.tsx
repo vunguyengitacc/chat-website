@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import { CSSProperties } from "react";
 
-const useFilterSidebarStyle = makeStyles({
+const useFastSearchSidebarStyle = makeStyles({
   surface: {
     width: "100%",
     overflowY: "scroll",
@@ -29,4 +29,4 @@ export const activeStyle: CSSProperties = {
   //   color: "white",
 };
 
-export default useFilterSidebarStyle;
+export default useFastSearchSidebarStyle;

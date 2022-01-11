@@ -6,7 +6,7 @@ const useUserResultStyle = makeStyles({
     height: "100%",
     overflowY: "scroll",
     backgroundColor: "#f9f9f9",
-    padding: "30px",
+    padding: "20px",
     display: "flex",
     flexDirection: "column",
     gap: "30px",

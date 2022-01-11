@@ -10,8 +10,8 @@ export interface IUser {
   phone: string;
   address: string;
   bio: string;
-  members?: IMember[];
-  friends: IUser[];
-  requests: IUser[];
-  waits: IUser[];
+  // members?: IMember[];
+  friends: Number[] | [];
+  requests: Number[] | [];
+  waits: Number[] | [];
 }

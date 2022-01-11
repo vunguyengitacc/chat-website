@@ -21,6 +21,7 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import UserItemReview from "../../ItemReivew/User";
 import CheckIcon from "@mui/icons-material/Check";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
+import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 
 interface IProps {
   value: IUser;
@@ -31,15 +32,16 @@ const UserItem: React.FC<IProps> = ({ value }) => {
     (state: RootState) => state.authReducer.currentUser
   );
   const [isRequest, setIsRequest] = useState<boolean>(
-    value?.requests?.filter((i) => i.id === currentUser?.id).length > 0
+    value?.requests.filter((i) => i === currentUser?.id).length > 0
   );
   const [isWait, setIsWait] = useState<boolean>(
-    value?.waits?.filter((i) => i.id === currentUser?.id).length > 0
+    value?.waits?.filter((i) => i === currentUser?.id).length > 0
   );
   const [isFriend, setIsFriend] = useState<boolean>(
-    value?.friends?.filter((i) => i.id === currentUser?.id).length > 0
+    value?.friends?.filter((i) => i === currentUser?.id).length > 0
   );
 
+  console.log(value.id, isRequest, isWait, isFriend);
   const [openReview, setOpenReview] = useState<boolean>(false);
 
   const style = useUserSearchItemStyle();
@@ -48,7 +50,7 @@ const UserItem: React.FC<IProps> = ({ value }) => {
     let toastId = toast.loading("Loading");
     try {
       await userApi.sendRequest(value.id);
-      setIsRequest(false);
+      setIsRequest(true);
       setIsFriend(false);
       setIsWait(false);
       toast.success("Success", { id: toastId });
@@ -95,7 +97,18 @@ const UserItem: React.FC<IProps> = ({ value }) => {
       toast.error(error.message, { id: toastId });
     }
   };
-
+  const denyRequestHandler = async () => {
+    let toastId = toast.loading("Loading");
+    try {
+      await userApi.denyRequest(value.id);
+      setIsRequest(false);
+      setIsFriend(false);
+      setIsWait(false);
+      toast.success("Success", { id: toastId });
+    } catch (error: any) {
+      toast.error(error.message, { id: toastId });
+    }
+  };
   return (
     <Card className={style.surface}>
       <Stack direction="row" justifyContent="space-between" gap="20px">
@@ -112,20 +125,35 @@ const UserItem: React.FC<IProps> = ({ value }) => {
             <Typography variant="h6">{value.name}</Typography>
             <Typography variant="body1">{value.name}</Typography>
             <Typography variant="body1">{value.bio}</Typography>
+            {isWait && (
+              <Typography variant="body1">
+                <i>This user is request to be friend with you</i>
+              </Typography>
+            )}
+            {isFriend && (
+              <Typography variant="body1">
+                <i>This user is your friend</i>
+              </Typography>
+            )}
           </Stack>
         </Stack>
 
-        <Stack justifyContent="center">
-          {isRequest ? (
+        <Stack justifyContent="center" flexDirection="row">
+          {isWait ? (
+            <>
+              <IconButton color="error" onClick={denyRequestHandler}>
+                <DoDisturbIcon />
+              </IconButton>
+              <IconButton color="success" onClick={acceptRequestHandler}>
+                <CheckIcon />
+              </IconButton>
+            </>
+          ) : isRequest ? (
             <IconButton color="error" onClick={cancelRequestHandler}>
               <CancelIcon />
             </IconButton>
-          ) : isWait ? (
-            <IconButton color="secondary" onClick={acceptRequestHandler}>
-              <CheckIcon />
-            </IconButton>
           ) : isFriend ? (
-            <IconButton color="secondary" onClick={removeFriendHandler}>
+            <IconButton color="error" onClick={removeFriendHandler}>
               <PersonRemoveIcon />
             </IconButton>
           ) : (

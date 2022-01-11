@@ -5,6 +5,9 @@ const useUserSearchItemStyle = makeStyles({
     padding: "10px 20px 10px 20px",
     marginBottom: "20px",
     cursor: "pointer",
+    borderRadius: "10px",
+    //boxShadow: "none",
+    border: "solid .5px #e7e7e7",
   },
   avatar: {
     width: "60px",

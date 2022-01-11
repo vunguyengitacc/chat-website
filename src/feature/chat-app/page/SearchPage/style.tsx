@@ -20,8 +20,11 @@ const useSearchPageStyle = makeStyles({
   },
   filterBar: {
     height: "100%",
+    overflowY: "scroll",
     width: "30%",
     borderRight: "solid .5px #e7e7e7",
+    display: "flex",
+    flexDirection: "column",
   },
   lstResult: {
     height: "100%",
