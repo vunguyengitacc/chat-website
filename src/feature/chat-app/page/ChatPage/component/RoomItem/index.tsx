@@ -1,7 +1,7 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import useRoomItemStyle, { activeRoomCSS } from "./style";
-import { toSimpleString } from "utility/stringUtil";
+import { toSimpleString } from "utility/string";
 import { NavLink } from "react-router-dom";
 
 interface IProps {

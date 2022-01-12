@@ -15,7 +15,14 @@ const useFriendSidebarStyle = makeStyles({
     backgroundColor: "white",
     borderBottom: "solid .5px #e7e7e7",
   },
-  list: { width: "100%", height: "87.5%" },
+  list: {
+    width: "100%",
+    height: "87.5%",
+    display: "flex",
+    flexDirection: "column",
+    padding: "15px",
+    gap: "15px",
+  },
 });
 
 export default useFriendSidebarStyle;

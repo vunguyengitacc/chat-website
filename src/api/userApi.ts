@@ -12,6 +12,9 @@ const userApi = {
   getMe(): Promise<IResponse<IUser>> {
     return axiosClient.get("/users/me");
   },
+  getMyFriend(): Promise<IResponse<IUser[]>> {
+    return axiosClient.get("/users/me/friend");
+  },
   updateMe(payload: Partial<IUser>): Promise<IResponse<IUser>> {
     return axiosClient.put("/users/me", payload);
   },
@@ -21,7 +24,6 @@ const userApi = {
   }): Promise<IResponse<IUser>> {
     return axiosClient.put("/users/me/password", payload);
   },
-  //need review again
   sendRequest(payload: Number): Promise<IResponse<any>> {
     return axiosClient.post(`/users/me/request/${payload}`);
   },

@@ -1,17 +1,14 @@
-import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import {
+  createAsyncThunk,
+  createEntityAdapter,
+  createSlice,
+  EntityState,
+  PayloadAction,
+} from "@reduxjs/toolkit";
+import { RootState } from "app/reduxStore";
 import authApi from "../../api/authApi";
 import userApi from "../../api/userApi";
 import { IUser } from "../../model/User";
-
-interface AuthState {
-  currentUser: IUser | null;
-  isAuth: boolean;
-}
-
-const initialState: AuthState = {
-  currentUser: null,
-  isAuth: false,
-};
 
 export const login = createAsyncThunk(
   "auth/login",
@@ -33,8 +30,9 @@ export const register = createAsyncThunk(
 );
 
 export const getMe = createAsyncThunk("auth/getMe", async () => {
-  const res = await userApi.getMe();
-  return res.data;
+  const meRes = await userApi.getMe();
+  const friendsRes = await userApi.getMyFriend();
+  return { me: meRes.data, friends: friendsRes.data };
 });
 
 export const updateMe = createAsyncThunk(
@@ -48,10 +46,29 @@ export const updatePassword = createAsyncThunk(
   "auth/updatePassword",
   async (payload: { currentPassword: string; newPassword: string }) => {
     const res = await userApi.updatePassword(payload);
-    console.log(res);
     return res.data;
   }
 );
+
+export const friendsAdapter = createEntityAdapter({
+  selectId: (friend: IUser) => friend.id.valueOf(),
+});
+
+export const friendsSelector = friendsAdapter.getSelectors(
+  (state: RootState) => state.authReducer.friends
+);
+
+interface AuthState {
+  currentUser: IUser | null;
+  isAuth: boolean;
+  friends: EntityState<IUser>;
+}
+
+const initialState: AuthState = {
+  currentUser: null,
+  isAuth: false,
+  friends: friendsAdapter.getInitialState(),
+};
 
 const authSlice = createSlice({
   name: "authSlice",
@@ -97,9 +114,9 @@ const authSlice = createSlice({
     builder.addCase(getMe.pending, (state) => {});
     builder.addCase(
       getMe.fulfilled,
-      (state, { payload }: PayloadAction<IUser>) => {
-        console.log(payload);
-        state.currentUser = payload;
+      (state, { payload }: PayloadAction<{ me: IUser; friends: IUser[] }>) => {
+        state.currentUser = payload.me;
+        friendsAdapter.setAll(state.friends, payload.friends);
         state.isAuth = true;
       }
     );

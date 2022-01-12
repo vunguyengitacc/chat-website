@@ -1,7 +1,9 @@
 import { Box, Button, Typography } from "@mui/material";
+import RoomItem from "feature/chat-app/page/ChatPage/component/RoomItem";
 import React from "react";
 import { NavLink } from "react-router-dom";
-import useFilterSidebarStyle, { activeStyle } from "./style";
+import LinkSearch from "../LinkSearch";
+import useFilterSidebarStyle from "./style";
 
 const FilterSidebar = () => {
   const style = useFilterSidebarStyle();
@@ -12,33 +14,10 @@ const FilterSidebar = () => {
           <b>Filters option</b>
         </Typography>
       </Box>
-      <NavLink
-        style={(isActive) => (isActive ? activeStyle : {})}
-        to="all"
-        className={style.link}
-      >
-        <Box padding="10px">
-          <Typography variant="h6">All</Typography>
-        </Box>
-      </NavLink>
-      <NavLink
-        style={(isActive) => (isActive ? activeStyle : {})}
-        to="user"
-        className={style.link}
-      >
-        <Box padding="10px">
-          <Typography variant="h6">User</Typography>
-        </Box>
-      </NavLink>
-      <NavLink
-        style={(isActive) => (isActive ? activeStyle : {})}
-        to="group"
-        className={style.link}
-      >
-        <Box padding="10px">
-          <Typography variant="h6">Group</Typography>
-        </Box>
-      </NavLink>
+
+      <LinkSearch to="all" text="All result" />
+      <LinkSearch to="user" text="User only" />
+      <LinkSearch to="group" text="Group only" />
     </Box>
   );
 };

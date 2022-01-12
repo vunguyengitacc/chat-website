@@ -1,7 +1,7 @@
 import { makeStyles } from "@mui/styles";
 import { CSSProperties } from "react";
 
-const useFilterSidebarStyle = makeStyles({
+const useLinkSearchStyle = makeStyles({
   surface: {
     width: "100%",
     overflowY: "scroll",
@@ -10,9 +10,6 @@ const useFilterSidebarStyle = makeStyles({
     alignItems: "center",
     gap: "20px",
     padding: "20px",
-  },
-  header: {
-    width: "100%",
   },
   link: {
     textDecoration: "none",
@@ -24,4 +21,9 @@ const useFilterSidebarStyle = makeStyles({
   },
 });
 
-export default useFilterSidebarStyle;
+export const activeCSS: CSSProperties = {
+  backgroundColor: "rgb(173 173 173)",
+  color: "white",
+};
+
+export default useLinkSearchStyle;

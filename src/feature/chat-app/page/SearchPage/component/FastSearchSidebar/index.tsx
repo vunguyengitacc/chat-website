@@ -1,6 +1,7 @@
 import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import LinkSearch from "../LinkSearch";
 import useFastSearchSidebarStyle, { activeStyle } from "./style";
 
 const FastSearchSidebar = () => {
@@ -12,33 +13,9 @@ const FastSearchSidebar = () => {
           <b>Fast searchs</b>
         </Typography>
       </Box>
-      <NavLink
-        style={(isActive) => (isActive ? activeStyle : {})}
-        to="all"
-        className={style.link}
-      >
-        <Box padding="10px">
-          <Typography variant="h6">Waiting friend request</Typography>
-        </Box>
-      </NavLink>
-      <NavLink
-        style={(isActive) => (isActive ? activeStyle : {})}
-        to="user"
-        className={style.link}
-      >
-        <Box padding="10px">
-          <Typography variant="h6">Waiting accept join</Typography>
-        </Box>
-      </NavLink>
-      <NavLink
-        style={(isActive) => (isActive ? activeStyle : {})}
-        to="user"
-        className={style.link}
-      >
-        <Box padding="10px">
-          <Typography variant="h6">Ask to be friend</Typography>
-        </Box>
-      </NavLink>
+      <LinkSearch to="user" text="Waiting friend request" />
+      <LinkSearch to="user" text="Waiting accept join" />
+      <LinkSearch to="user" text="Ask to be friend" />
     </Box>
   );
 };

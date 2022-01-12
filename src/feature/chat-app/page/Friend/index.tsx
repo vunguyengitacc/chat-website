@@ -1,5 +1,6 @@
 import { Box } from "@mui/material";
 import React from "react";
+import { Outlet } from "react-router-dom";
 import FriendSidebar from "./component/FriendSidebar";
 
 const FriendPage = () => {
@@ -9,7 +10,7 @@ const FriendPage = () => {
         <FriendSidebar />
       </Box>
       <Box width="65%" height="100vh">
-        Hello
+        <Outlet />
       </Box>
     </Box>
   );

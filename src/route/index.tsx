@@ -16,6 +16,7 @@ import SearchPage from "feature/chat-app/page/SearchPage";
 import UserResult from "feature/chat-app/page/SearchPage/component/ListResult/UserResult";
 import AllResult from "feature/chat-app/page/SearchPage/component/ListResult/AllResult";
 import GroupResult from "feature/chat-app/page/SearchPage/component/ListResult/GroupResult";
+import FriendReview from "feature/chat-app/page/Friend/component/FriendReview";
 
 const MasterRoute = () => {
   return (
@@ -42,7 +43,9 @@ const MasterRoute = () => {
               <Route path="user" element={<UserResult />} />
               <Route path="group" element={<GroupResult />} />
             </Route>
-            <Route path="friend" element={<FriendPage />} />
+            <Route path="friend" element={<FriendPage />}>
+              <Route path=":friendId" element={<FriendReview />} />
+            </Route>
             <Route path="me" element={<UserPage />} />
           </Route>
         </Route>

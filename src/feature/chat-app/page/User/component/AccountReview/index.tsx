@@ -15,7 +15,7 @@ const AccountReview = () => {
   const currentUser = useSelector(
     (state: RootState) => state.authReducer.currentUser
   );
-  console.log(currentUser);
+
   return (
     <Box className={style.surface}>
       <Card variant="outlined" className={style.card}>
