@@ -16,6 +16,7 @@ import SearchPage from "feature/chat-app/page/SearchPage";
 import UserResult from "feature/chat-app/page/SearchPage/component/ListResult/UserResult";
 import AllResult from "feature/chat-app/page/SearchPage/component/ListResult/AllResult";
 import GroupResult from "feature/chat-app/page/SearchPage/component/ListResult/GroupResult";
+import FastQuery from "feature/chat-app/page/SearchPage/component/ListResult/FastQuery";
 import FriendReview from "feature/chat-app/page/Friend/component/FriendReview";
 
 const MasterRoute = () => {
@@ -42,6 +43,7 @@ const MasterRoute = () => {
               <Route path="all" element={<AllResult />} />
               <Route path="user" element={<UserResult />} />
               <Route path="group" element={<GroupResult />} />
+              <Route path="convenient/:type" element={<FastQuery />} />
             </Route>
             <Route path="friend" element={<FriendPage />}>
               <Route path=":friendId" element={<FriendReview />} />

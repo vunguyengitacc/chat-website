@@ -22,7 +22,7 @@ const useLinkSearchStyle = makeStyles({
 });
 
 export const activeCSS: CSSProperties = {
-  backgroundColor: "rgb(173 173 173)",
+  backgroundColor: "#7851cc",
   color: "white",
 };
 

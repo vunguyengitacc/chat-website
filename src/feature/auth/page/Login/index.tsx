@@ -12,7 +12,6 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
 import toast from "react-hot-toast";
-import { reset } from "feature/chat-app/page/SearchPage/searchSlice";
 
 const Login = () => {
   const [isLoad, setIsLoad] = useState<boolean>();
@@ -35,7 +34,6 @@ const Login = () => {
       setIsLoad(true);
       await dispatch(login(data)).then(unwrapResult);
       await dispatch(getMe()).then(unwrapResult);
-      await dispatch(reset());
       navigator("/app");
     } catch (error: any) {
       setIsLoad(false);

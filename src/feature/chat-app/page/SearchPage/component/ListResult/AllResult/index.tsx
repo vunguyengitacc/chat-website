@@ -1,16 +1,41 @@
 import { Box, Typography } from "@mui/material";
-import { RootState } from "app/reduxStore";
-import React from "react";
-import { useSelector } from "react-redux";
+import userApi from "api/userApi";
+import { IRoom } from "model/Room";
+import { IUser } from "model/User";
+import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import GroupItem from "../../SearchItem/GroupItem";
 import UserItem from "../../SearchItem/UserItem";
 import useAllResultStyle from "./style";
 
 const AllResult = () => {
-  const users = useSelector((state: RootState) => state.searchReducer.users);
-  const rooms = useSelector((state: RootState) => state.searchReducer.rooms);
+  const [users, setUsers] = useState<IUser[]>([]);
+  const [rooms, setRooms] = useState<IRoom[]>([]);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+
+  const [searchParams] = useSearchParams();
 
   const style = useAllResultStyle();
+
+  useEffect(() => {
+    (async () => {
+      let term = searchParams.get("term");
+      if (term === null || term === "") {
+        console.log(term);
+        setIsSearching(false);
+        return;
+      }
+      try {
+        setIsSearching(true);
+        let res = await userApi.search({ term });
+        setIsSearching(false);
+        setUsers(res.data);
+      } catch (error: any) {
+        setIsSearching(false);
+        console.log(error.message);
+      }
+    })();
+  }, [searchParams]);
 
   return (
     <Box className={style.surface}>

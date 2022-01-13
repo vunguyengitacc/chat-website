@@ -2,36 +2,35 @@ import { Box } from "@mui/material";
 import userApi from "api/userApi";
 import { IUser } from "model/User";
 import React, { useEffect, useState } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useSearchParams, useParams } from "react-router-dom";
 import UserItem from "../../SearchItem/UserItem";
-import useUserResultStyle from "./style";
+import useFastQueryStyle from "./style";
 
-const UserResult = () => {
+const FastQuery = () => {
+  const { type } = useParams();
   const [users, setUsers] = useState<IUser[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
-
-  const style = useUserResultStyle();
-
-  const [searchParams] = useSearchParams();
+  const style = useFastQueryStyle();
 
   useEffect(() => {
     (async () => {
-      let term = searchParams.get("term");
-      if (!term) {
-        setIsSearching(false);
-        return;
-      }
       try {
         setIsSearching(true);
-        let res = await userApi.search({ term });
+        let res;
+        if (type === "wait") {
+          res = await userApi.getWait();
+          setUsers(res.data);
+        } else if (type === "request") {
+          res = await userApi.getRequest();
+          setUsers(res.data);
+        }
         setIsSearching(false);
-        setUsers(res.data);
       } catch (error: any) {
         setIsSearching(false);
         console.log(error.message);
       }
     })();
-  }, [searchParams]);
+  }, [type]);
 
   return (
     <Box className={style.surface}>
@@ -42,4 +41,4 @@ const UserResult = () => {
   );
 };
 
-export default UserResult;
+export default FastQuery;

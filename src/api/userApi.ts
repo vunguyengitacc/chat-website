@@ -24,6 +24,12 @@ const userApi = {
   }): Promise<IResponse<IUser>> {
     return axiosClient.put("/users/me/password", payload);
   },
+  getRequest(): Promise<IResponse<IUser[]>> {
+    return axiosClient.get("/users/me/request");
+  },
+  getWait(): Promise<IResponse<IUser[]>> {
+    return axiosClient.get("/users/me/wait");
+  },
   sendRequest(payload: Number): Promise<IResponse<any>> {
     return axiosClient.post(`/users/me/request/${payload}`);
   },

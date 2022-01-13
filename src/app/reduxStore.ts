@@ -1,10 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "feature/auth/authSlice";
-import searchReducer from "feature/chat-app/page/SearchPage/searchSlice";
 
 const rootReducer = {
   authReducer,
-  searchReducer,
 };
 
 const store = configureStore({
