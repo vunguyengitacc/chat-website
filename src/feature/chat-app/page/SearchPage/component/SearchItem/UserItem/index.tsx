@@ -15,13 +15,14 @@ import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
 import { IUser } from "model/User";
 import toast from "react-hot-toast";
 import userApi from "api/userApi";
-import { useSelector } from "react-redux";
-import { RootState } from "app/reduxStore";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "app/reduxStore";
 import CancelIcon from "@mui/icons-material/Cancel";
 import UserItemReview from "../../ItemReivew/User";
 import CheckIcon from "@mui/icons-material/Check";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
+import { addFriend, removeFriend } from "feature/auth/authSlice";
 
 interface IProps {
   value: IUser;
@@ -40,10 +41,9 @@ const UserItem: React.FC<IProps> = ({ value }) => {
   const [isFriend, setIsFriend] = useState<boolean>(
     value?.friends?.filter((i) => i === currentUser?.id).length > 0
   );
-
-  console.log(value.id, isRequest, isWait, isFriend);
   const [openReview, setOpenReview] = useState<boolean>(false);
 
+  const dispatch = useDispatch<AppDispatch>();
   const style = useUserSearchItemStyle();
 
   const sendRequestHandler = async () => {
@@ -79,6 +79,7 @@ const UserItem: React.FC<IProps> = ({ value }) => {
       setIsRequest(false);
       setIsFriend(true);
       setIsWait(false);
+      dispatch(addFriend(value));
       toast.success("Success", { id: toastId });
     } catch (error: any) {
       toast.error(error.message, { id: toastId });
@@ -92,6 +93,7 @@ const UserItem: React.FC<IProps> = ({ value }) => {
       setIsRequest(false);
       setIsFriend(false);
       setIsWait(false);
+      dispatch(removeFriend(value));
       toast.success("Success", { id: toastId });
     } catch (error: any) {
       toast.error(error.message, { id: toastId });

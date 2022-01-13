@@ -3,7 +3,7 @@ import useAccountReviewStyle from "./style";
 import React from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "app/reduxStore";
-import ReviewItem from "../ReviewItem";
+import ReviewItem from "feature/chat-app/component/ReviewItem";
 import AbcIcon from "@mui/icons-material/Abc";
 import EmailIcon from "@mui/icons-material/Email";
 import LogoutIcon from "@mui/icons-material/Logout";
@@ -22,9 +22,8 @@ const AccountReview = () => {
         <Avatar
           className={style.avatar}
           src={
-            currentUser?.avatarURI !== undefined
-              ? currentUser.avatarURI
-              : `https://avatars.dicebear.com/4.5/api/initials/${currentUser?.name}.svg`
+            currentUser?.avatarURI ??
+            `https://avatars.dicebear.com/4.5/api/initials/${currentUser?.name}.svg`
           }
         />
         <Typography variant="h5">{currentUser?.name}</Typography>
@@ -38,30 +37,16 @@ const AccountReview = () => {
         </Button>
       </Card>
       <Card variant="outlined" className={style.inforCard}>
-        <ReviewItem
-          label="Name"
-          value={currentUser?.name !== undefined ? currentUser.name : "None"}
-        >
+        <ReviewItem label="Name" value={currentUser?.name ?? "None"}>
           <AbcIcon />
         </ReviewItem>
-        <ReviewItem
-          label="Email"
-          value={currentUser?.email !== undefined ? currentUser?.email : "None"}
-        >
+        <ReviewItem label="Email" value={currentUser?.email ?? "None"}>
           <EmailIcon />
         </ReviewItem>
-        <ReviewItem
-          label="Phone"
-          value={currentUser?.phone !== undefined ? currentUser?.phone : "None"}
-        >
+        <ReviewItem label="Phone" value={currentUser?.phone ?? "None"}>
           <LocalPhoneIcon />
         </ReviewItem>
-        <ReviewItem
-          label="Address"
-          value={
-            currentUser?.address !== undefined ? currentUser?.address : "None"
-          }
-        >
+        <ReviewItem label="Address" value={currentUser?.address ?? "None"}>
           <HomeIcon />
         </ReviewItem>
       </Card>

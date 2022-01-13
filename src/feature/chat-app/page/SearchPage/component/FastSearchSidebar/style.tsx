@@ -4,7 +4,6 @@ import { CSSProperties } from "react";
 const useFastSearchSidebarStyle = makeStyles({
   surface: {
     width: "100%",
-    overflowY: "scroll",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -23,10 +22,5 @@ const useFastSearchSidebarStyle = makeStyles({
     color: "#b9b9b9",
   },
 });
-
-export const activeStyle: CSSProperties = {
-  //   backgroundColor: "rgb(173 173 173)",
-  //   color: "white",
-};
 
 export default useFastSearchSidebarStyle;

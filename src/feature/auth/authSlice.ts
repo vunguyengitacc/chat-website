@@ -79,6 +79,12 @@ const authSlice = createSlice({
       state.currentUser = null;
       localStorage.removeItem("access_token");
     },
+    addFriend: (state, { payload }: PayloadAction<IUser>) => {
+      friendsAdapter.addOne(state.friends, payload);
+    },
+    removeFriend: (state, { payload }: PayloadAction<IUser>) => {
+      friendsAdapter.removeOne(state.friends, payload.id.toString());
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(login.rejected, (state) => {
@@ -142,5 +148,5 @@ const authSlice = createSlice({
 
 const { reducer: authReducer, actions } = authSlice;
 
-export const { logout } = actions;
+export const { logout, addFriend, removeFriend } = actions;
 export default authReducer;

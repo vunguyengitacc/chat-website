@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
 import LinkSearch from "../LinkSearch";
-import useFastSearchSidebarStyle, { activeStyle } from "./style";
+import useFastSearchSidebarStyle from "./style";
 
 const FastSearchSidebar = () => {
   const style = useFastSearchSidebarStyle();

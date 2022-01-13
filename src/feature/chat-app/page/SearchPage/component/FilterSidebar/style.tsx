@@ -4,7 +4,6 @@ import { CSSProperties } from "react";
 const useFilterSidebarStyle = makeStyles({
   surface: {
     width: "100%",
-    overflowY: "scroll",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",

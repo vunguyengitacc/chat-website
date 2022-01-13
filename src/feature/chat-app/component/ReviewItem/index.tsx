@@ -1,6 +1,5 @@
-import { Box, SvgIconTypeMap, Typography } from "@mui/material";
-import { OverridableComponent } from "@mui/material/OverridableComponent";
-import React, { Component } from "react";
+import { Box, Typography } from "@mui/material";
+import React from "react";
 import useReviewItemStyle from "./style";
 
 interface IProps {
@@ -13,7 +12,9 @@ const ReviewItem: React.FC<IProps> = ({ value, label, children }) => {
   return (
     <Box className={style.surface}>
       <Box>
-        <Typography variant="subtitle2">{label}</Typography>
+        <Typography variant="subtitle2">
+          <b>{label}</b>
+        </Typography>
         <Typography variant="subtitle1">{value}</Typography>
       </Box>
       <Box display="flex" alignItems="center">

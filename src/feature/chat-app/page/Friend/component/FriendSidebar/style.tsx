@@ -22,6 +22,16 @@ const useFriendSidebarStyle = makeStyles({
     flexDirection: "column",
     padding: "15px",
     gap: "15px",
+    overflowY: "scroll",
+  },
+  lstBox: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "17.5px",
+  },
+  boxHeader: {
+    color: "#bbbbbb",
+    fontWeight: "bolder",
   },
 });
 
