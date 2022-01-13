@@ -121,6 +121,7 @@ const authSlice = createSlice({
     builder.addCase(
       getMe.fulfilled,
       (state, { payload }: PayloadAction<{ me: IUser; friends: IUser[] }>) => {
+        console.log(payload.me);
         state.currentUser = payload.me;
         friendsAdapter.setAll(state.friends, payload.friends);
         state.isAuth = true;

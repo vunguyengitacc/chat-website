@@ -111,6 +111,7 @@ const UserItem: React.FC<IProps> = ({ value }) => {
       toast.error(error.message, { id: toastId });
     }
   };
+
   return (
     <Card className={style.surface}>
       <Stack direction="row" justifyContent="space-between" gap="20px">
@@ -167,7 +168,15 @@ const UserItem: React.FC<IProps> = ({ value }) => {
       </Stack>
       <Modal open={openReview} onClose={() => setOpenReview(false)}>
         <Paper className={style.modalReview}>
-          <UserItemReview />
+          <UserItemReview
+            value={value}
+            isFriend={isFriend}
+            setIsFriend={setIsFriend}
+            isRequest={isRequest}
+            setIsRequest={setIsRequest}
+            isWait={isWait}
+            setIsWait={setIsWait}
+          />
         </Paper>
       </Modal>
     </Card>

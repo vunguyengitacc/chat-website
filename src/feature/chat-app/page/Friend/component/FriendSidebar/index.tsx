@@ -11,15 +11,25 @@ import FriendItem from "../FriendItem";
 import useFriendSidebarStyle from "./style";
 
 const FriendSidebar = () => {
+  const [renderValue, setRenderValue] = useState<FlexObject<IUser>>({});
+  const [isAlone, setIsAlone] = useState<boolean>(true);
+
   const friends = useSelector((state: RootState) =>
     friendsSelector.selectAll(state)
   );
 
-  const [renderValue, setRenderValue] = useState<FlexObject<IUser>>({});
-
   useEffect(() => {
     setRenderValue(listUserGroupByFirstChar(friends));
   }, [friends]);
+
+  useEffect(() => {
+    setIsAlone(
+      !(
+        Object.entries(renderValue).filter((item) => item[1].length > 0)
+          .length > 0
+      )
+    );
+  }, [renderValue]);
 
   const style = useFriendSidebarStyle();
   return (
@@ -28,20 +38,22 @@ const FriendSidebar = () => {
         <FriendHeader />
       </Box>
       <Box className={style.list}>
-        {Object.entries(renderValue).map((item) => {
-          return item[1].length == 0 ? null : (
-            <Box key={item[0]} className={style.lstBox}>
-              <Typography variant="h5" className={style.boxHeader}>
-                {item[0]}
-              </Typography>
-              <Box display="flex" flexDirection="column" gap="15px">
-                {item[1].map((user, index) => (
-                  <FriendItem value={user} key={index} />
-                ))}
+        {!isAlone &&
+          Object.entries(renderValue).map((item) => {
+            return item[1].length == 0 ? null : (
+              <Box key={item[0]} className={style.lstBox}>
+                <Typography variant="h5" className={style.boxHeader}>
+                  {item[0]}
+                </Typography>
+                <Box display="flex" flexDirection="column" gap="15px">
+                  {item[1].map((user, index) => (
+                    <FriendItem value={user} key={index} />
+                  ))}
+                </Box>
               </Box>
-            </Box>
-          );
-        })}
+            );
+          })}
+        {isAlone && <>You don't have any friend</>}
       </Box>
     </Box>
   );

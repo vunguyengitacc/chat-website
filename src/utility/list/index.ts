@@ -5,7 +5,6 @@ export const listUserGroupByFirstChar = (input: IUser[]) => {
   let arr = new Array(26).fill(1).map((_, i) => String.fromCharCode(65 + i));
   let rs: FlexObject<IUser> = arr.reduce((a, v) => ({ ...a, [v]: [] }), {});
   rs["Other"] = [];
-  console.log(rs);
   const regEx = new RegExp("[A-Z]");
   input.forEach((item) => {
     if (regEx.test(item.name.toUpperCase().split("")[0])) {
