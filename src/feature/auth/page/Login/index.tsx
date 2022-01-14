@@ -12,6 +12,7 @@ import { unwrapResult } from "@reduxjs/toolkit";
 import { useState } from "react";
 import { LoadingButton } from "@mui/lab";
 import toast from "react-hot-toast";
+import { getMyRoom } from "feature/chat-app/roomSlice";
 
 const Login = () => {
   const [isLoad, setIsLoad] = useState<boolean>();
@@ -34,6 +35,7 @@ const Login = () => {
       setIsLoad(true);
       await dispatch(login(data)).then(unwrapResult);
       await dispatch(getMe()).then(unwrapResult);
+      await dispatch(getMyRoom()).then(unwrapResult);
       navigator("/app");
     } catch (error: any) {
       setIsLoad(false);

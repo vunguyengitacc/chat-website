@@ -3,24 +3,28 @@ import React from "react";
 import useRoomItemStyle, { activeRoomCSS } from "./style";
 import { toSimpleString } from "utility/string";
 import { NavLink } from "react-router-dom";
+import { IRoom } from "model/Room";
 
 interface IProps {
-  roomId: string;
+  value: IRoom;
 }
 
-const RoomItem: React.FC<IProps> = ({ roomId }) => {
+const RoomItem: React.FC<IProps> = ({ value }) => {
   const style = useRoomItemStyle();
   return (
     <NavLink
       style={({ isActive }) => (isActive ? activeRoomCSS : {})}
-      to={`${roomId}`}
+      to={`${value.id}`}
       className={style.surface}
     >
       <Box className={style.roomContent}>
         <Box className={style.avatarField}>
           <Avatar
             sx={{ height: "60px", width: "60px" }}
-            children={toSimpleString("Kent Dodds")}
+            src={
+              value.coverImage ??
+              `https://avatars.dicebear.com/4.5/api/initials/${value.name}.svg`
+            }
           />
         </Box>
 
@@ -28,7 +32,7 @@ const RoomItem: React.FC<IProps> = ({ roomId }) => {
           <Box className={style.topField}>
             <Box className={style.nameField}>
               <Typography variant="subtitle1">
-                <b>Name</b>
+                <b>{value.name}</b>
               </Typography>
             </Box>
             <Box className={style.lastestActionTimeField}>

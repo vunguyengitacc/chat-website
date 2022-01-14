@@ -1,4 +1,5 @@
 import Loading from "component/Loading";
+import { getMyRoom } from "feature/chat-app/roomSlice";
 import { useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
 import { useDispatch } from "react-redux";
@@ -12,7 +13,10 @@ function App() {
   const [isTryLoad, setIsTryLoad] = useState<boolean>(false);
 
   useEffect(() => {
-    dispatch(getMe()).then(() => setIsTryLoad(true));
+    dispatch(getMe()).then(() => {
+      setIsTryLoad(true);
+      dispatch(getMyRoom());
+    });
   }, []);
 
   return (

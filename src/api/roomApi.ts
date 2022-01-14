@@ -6,7 +6,7 @@ const roomApi = {
   create(payload: IRoom): Promise<IResponse<IRoom>> {
     return axiosClient.post("/rooms", payload);
   },
-  getAll(): Promise<IResponse<IRoom[]>> {
+  getMyRooms(): Promise<IResponse<IRoom[]>> {
     return axiosClient.get("/rooms");
   },
   getById(payload: Pick<IRoom, "id">): Promise<IResponse<IRoom>> {
