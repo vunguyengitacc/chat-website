@@ -9,6 +9,9 @@ const roomApi = {
   getMyRooms(): Promise<IResponse<IRoom[]>> {
     return axiosClient.get("/rooms");
   },
+  getFriendRoomById(payload: { userId: Number }): Promise<IResponse<IRoom>> {
+    return axiosClient.get(`/rooms/friend/${payload.userId}`);
+  },
   getById(payload: Pick<IRoom, "id">): Promise<IResponse<IRoom>> {
     return axiosClient.get(`/rooms/${payload.id}`);
   },

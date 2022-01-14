@@ -5,5 +5,6 @@ export interface IRoom {
   name: string;
   createdDate: Date;
   coverImage: string;
-  members: Number[];
+  memberIds: Number[];
+  messageIds: Number[];
 }

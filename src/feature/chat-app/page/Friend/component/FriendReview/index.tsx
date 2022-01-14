@@ -8,7 +8,7 @@ import {
 } from "@mui/material";
 import { RootState } from "app/reduxStore";
 import { friendsSelector } from "feature/auth/authSlice";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useFriendReviewStyle from "./style";
@@ -20,8 +20,13 @@ import ReviewItem from "feature/chat-app/component/ReviewItem";
 import ChatIcon from "@mui/icons-material/Chat";
 import PersonRemoveIcon from "@mui/icons-material/PersonRemove";
 import BlockIcon from "@mui/icons-material/Block";
+import toast from "react-hot-toast";
+import roomApi from "api/roomApi";
+import { LoadingButton } from "@mui/lab";
 
 const FriendReview = () => {
+  const [isLoad, setIsLoad] = useState<boolean>(false);
+
   const { friendId } = useParams();
   const friend = useSelector((state: RootState) =>
     friendsSelector.selectById(state, Number(friendId))
@@ -33,6 +38,19 @@ const FriendReview = () => {
   useEffect(() => {
     if (friend === undefined) navigator("/*");
   }, [friend]);
+
+  const navigateToRoom = async () => {
+    try {
+      setIsLoad(true);
+      if (friend === undefined) return;
+      const room = await roomApi.getFriendRoomById({ userId: friend?.id });
+      room.data !== null && navigator(`/app/chat/${room.data.id}`);
+    } catch (error: any) {
+      setIsLoad(false);
+      toast.error(error.message);
+    }
+  };
+
   return (
     <Box className={style.surface}>
       <Card variant="outlined" className={style.card}>
@@ -44,14 +62,16 @@ const FriendReview = () => {
           }
         />
         <Typography variant="h5">{friend?.name}</Typography>
-        <Button
+        <LoadingButton
+          loading={isLoad}
           startIcon={<ChatIcon />}
           color="secondary"
           variant="contained"
           disableElevation
+          onClick={navigateToRoom}
         >
           Let's Chat
-        </Button>
+        </LoadingButton>
       </Card>
       <Card variant="outlined" className={style.inforCard}>
         <ReviewItem label="Name" value={friend?.name ?? "None"}>

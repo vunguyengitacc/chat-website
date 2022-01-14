@@ -27,7 +27,7 @@ const GroupItem: React.FC<IProps> = ({ value }) => {
             <Typography variant="h6">{value.name}</Typography>
             <Typography variant="body1">{value.name}</Typography>
             <Typography variant="body1">
-              {value.members.length} member
+              {value.memberIds.length} member
             </Typography>
           </Stack>
         </Stack>

@@ -13,6 +13,13 @@ const theme = createTheme({
     MuiInputBase: {
       styleOverrides: {},
     },
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: "transparent !important",
+        },
+      },
+    },
   },
 });
 

@@ -8,7 +8,7 @@ const messageApi = {
     return axiosClient.get(`/messages/room/${payload.id}`);
   },
   create(
-    messagePayload: Pick<IMessage, "content" | "typeId">,
+    messagePayload: Pick<IMessage, "content">,
     roomPayload: Pick<IRoom, "id">
   ): Promise<IResponse<IMessage>> {
     let payload = {
