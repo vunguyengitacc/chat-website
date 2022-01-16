@@ -1,17 +1,14 @@
-import { Box, Button, Drawer, IconButton, Typography } from "@mui/material";
+import { Box, Drawer, IconButton, Typography } from "@mui/material";
 import { AppDispatch, RootState } from "app/reduxStore";
-import {
-  getMessageInRoom,
-  messageSelector,
-  roomSelector,
-} from "feature/chat-app/roomSlice";
+import { getMessageInRoom, roomSelector } from "feature/chat-app/roomSlice";
 import CloseIcon from "@mui/icons-material/Close";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ChatBoxHeader from "../ChatBoxHeader";
 import useChatBoxStyle from "./style";
-import messageApi from "api/messageApi";
+import MessageBox from "../MessageBox";
+import MessageSender from "../MessageSender";
 
 const ChatBox = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);
@@ -23,9 +20,6 @@ const ChatBox = () => {
   const room = useSelector((state: RootState) =>
     roomSelector.selectById(state, Number(id))
   );
-  const messages = useSelector((state: RootState) =>
-    messageSelector.selectAll(state).filter((i) => i.roomId == Number(id))
-  );
   const isFetch = useSelector(
     (state: RootState) =>
       state.roomReducer.alreadyFetch.filter((i) => i === Number(id)).length > 0
@@ -36,13 +30,16 @@ const ChatBox = () => {
   }, [isFetch]);
 
   return (
-    <Box>
+    <Box className={style.surface}>
       <Box height="80px" width="100%">
         <ChatBoxHeader setOpenDrawer={setIsOpenDrawer} room={room} />
       </Box>
-      {messages.map((i) => (
-        <Typography>{i.content}</Typography>
-      ))}
+      <Box className={style.messageBox}>
+        {room && <MessageBox roomId={room.id} />}
+      </Box>
+      <Box className={style.sender}>
+        {room && <MessageSender roomId={room.id} />}
+      </Box>
       <Drawer
         variant="temporary"
         anchor="right"
