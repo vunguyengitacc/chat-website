@@ -7,14 +7,10 @@ const messageApi = {
   getByRoom(payload: Pick<IRoom, "id">): Promise<IResponse<IMessage[]>> {
     return axiosClient.get(`/messages/room/${payload.id}`);
   },
-  create(
-    messagePayload: Pick<IMessage, "content">,
-    roomPayload: Pick<IRoom, "id">
-  ): Promise<IResponse<IMessage>> {
-    let payload = {
-      ...messagePayload,
-      ...roomPayload,
-    };
+  create(payload: {
+    content: string;
+    roomId: string;
+  }): Promise<IResponse<IMessage>> {
     return axiosClient.post("/messages", payload);
   },
 };

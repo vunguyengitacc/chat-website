@@ -63,6 +63,16 @@ const roomSlice = createSlice({
     removeOneRoom: (state, { payload }: PayloadAction<Number>) => {
       roomAdapter.removeOne(state.rooms, payload.toString());
     },
+    addMessage: (state, { payload }: PayloadAction<IMessage>) => {
+      if (
+        state.rooms.ids.filter(
+          (i) => i.valueOf().toString() === payload.roomId.toString()
+        ).length > 0
+      ) {
+        payload.id = 1;
+        messageAdapter.addOne(state.messages, payload);
+      }
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMyRoom.rejected, (state) => {});
@@ -86,5 +96,5 @@ const roomSlice = createSlice({
 });
 const { reducer: roomReducer, actions } = roomSlice;
 
-export const { addOneRoom, removeOneRoom } = actions;
+export const { addOneRoom, removeOneRoom, addMessage } = actions;
 export default roomReducer;

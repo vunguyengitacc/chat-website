@@ -1,4 +1,4 @@
-import { Box, Drawer, IconButton, Typography } from "@mui/material";
+import { Box, Button, Drawer, IconButton, Typography } from "@mui/material";
 import { AppDispatch, RootState } from "app/reduxStore";
 import {
   getMessageInRoom,
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import ChatBoxHeader from "../ChatBoxHeader";
 import useChatBoxStyle from "./style";
+import messageApi from "api/messageApi";
 
 const ChatBox = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);
@@ -39,7 +40,9 @@ const ChatBox = () => {
       <Box height="80px" width="100%">
         <ChatBoxHeader setOpenDrawer={setIsOpenDrawer} room={room} />
       </Box>
-      {messages.length} message
+      {messages.map((i) => (
+        <Typography>{i.content}</Typography>
+      ))}
       <Drawer
         variant="temporary"
         anchor="right"
