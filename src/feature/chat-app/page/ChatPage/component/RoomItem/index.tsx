@@ -4,12 +4,19 @@ import useRoomItemStyle, { activeRoomCSS } from "./style";
 import { toSimpleString } from "utility/string";
 import { NavLink } from "react-router-dom";
 import { IRoom } from "model/Room";
+import { useSelector } from "react-redux";
+import { RootState } from "app/reduxStore";
+import { getTimeDistance } from "utility/msg-date";
 
 interface IProps {
   value: IRoom;
 }
 
 const RoomItem: React.FC<IProps> = ({ value }) => {
+  const currentUser = useSelector(
+    (state: RootState) => state.authReducer.currentUser
+  );
+
   const style = useRoomItemStyle();
   return (
     <NavLink
@@ -36,11 +43,18 @@ const RoomItem: React.FC<IProps> = ({ value }) => {
               </Typography>
             </Box>
             <Box className={style.lastestActionTimeField}>
-              <Typography variant="subtitle1">Name</Typography>
+              <Typography variant="caption">
+                {value.lastMessage !== undefined
+                  ? getTimeDistance(new Date(value.lastMessage?.createdDate))
+                  : "None"}
+              </Typography>
             </Box>
           </Box>
           <Box className={style.bottomField}>
-            New Message here New Message here New Message here
+            {value.lastMessage?.owner.id === currentUser?.id
+              ? "You"
+              : value.lastMessage?.owner.name}
+            : {value.lastMessage?.content}
           </Box>
         </Box>
       </Box>

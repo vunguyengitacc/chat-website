@@ -4,7 +4,9 @@ const useMyMessageStyle = makeStyles({
   surface: {
     width: "100%",
     display: "flex",
-    justifyContent: "flex-end",
+    flexDirection: "column",
+    alignItems: "flex-end",
+    paddingRight: "10px",
   },
   messsage: {
     maxWidth: "70%",

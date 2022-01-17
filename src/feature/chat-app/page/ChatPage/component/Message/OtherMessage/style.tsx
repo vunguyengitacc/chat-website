@@ -9,8 +9,13 @@ const useOtherMessageStyle = makeStyles({
   avatar: {
     margin: "10px",
   },
-  messsage: {
+  messageBox: {
     maxWidth: "70%",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
+  messsage: {
     backgroundColor: "#e9e9e9",
     padding: "20px",
     color: "#878787",

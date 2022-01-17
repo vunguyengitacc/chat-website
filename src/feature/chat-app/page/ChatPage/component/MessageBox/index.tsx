@@ -16,7 +16,13 @@ const MessageBox: React.FC<IProps> = ({ roomId }) => {
     (state: RootState) => state.authReducer.currentUser
   );
   const messages = useSelector((state: RootState) =>
-    messageSelector.selectAll(state).filter((i) => i.roomId === Number(roomId))
+    messageSelector
+      .selectAll(state)
+      .filter((i) => i.roomId === Number(roomId))
+      .sort(
+        (a, b) =>
+          new Date(a.createdDate).getTime() - new Date(b.createdDate).getTime()
+      )
   );
 
   const style = useMessageBoxStyle();
@@ -24,8 +30,18 @@ const MessageBox: React.FC<IProps> = ({ roomId }) => {
     <Box className={style.surface}>
       {messages.map((i, index) => {
         if (i.owner.id === currentUser?.id)
-          return <MyMessage key={index} value={i} />;
-        else return <OtherMessage key={index} value={i} />;
+          return (
+            <MyMessage nextMsg={messages[index + 1]} key={index} value={i} />
+          );
+        else
+          return (
+            <OtherMessage
+              oldMsg={messages[index - 1]}
+              nextMsg={messages[index + 1]}
+              key={index}
+              value={i}
+            />
+          );
       })}
     </Box>
   );

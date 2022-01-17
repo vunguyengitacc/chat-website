@@ -7,7 +7,7 @@ const messageScheme = yup
       .string()
       .required("Please enter username")
       .min(1, "Please enter at least 1 characters.")
-      .max(100, "Please enter at most 100 characters"),
+      .max(500, "Please enter at most 500 characters"),
   })
   .required();
 

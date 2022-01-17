@@ -26,6 +26,7 @@ const MessageInput: React.FC<IProps> = (props) => {
         <FormControl sx={{ height: "100%" }} fullWidth>
           <InputBase
             {...field}
+            autoComplete="off"
             placeholder={props.placeHolder}
             className={props.className}
             fullWidth

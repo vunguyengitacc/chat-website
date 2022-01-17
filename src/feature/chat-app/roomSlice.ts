@@ -69,7 +69,6 @@ const roomSlice = createSlice({
           (i) => i.valueOf().toString() === payload.roomId.toString()
         ).length > 0
       ) {
-        payload.id = 1;
         messageAdapter.addOne(state.messages, payload);
       }
     },

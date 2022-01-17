@@ -1,4 +1,5 @@
 import { IMember } from "./Member";
+import { IMessage } from "./Message";
 
 export interface IRoom {
   id: Number;
@@ -7,4 +8,5 @@ export interface IRoom {
   coverImage: string;
   memberIds: Number[];
   messageIds: Number[];
+  lastMessage?: IMessage;
 }

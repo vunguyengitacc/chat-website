@@ -34,6 +34,8 @@ const useRoomItemStyle = makeStyles({
     height: "60%",
     textOverflow: "ellipsis",
     overflow: "hidden",
+    display: "flex",
+    alignItems: "center",
   },
   nameField: {
     width: "75%",
