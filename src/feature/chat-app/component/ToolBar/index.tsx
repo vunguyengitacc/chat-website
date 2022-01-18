@@ -10,14 +10,17 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "app/reduxStore";
 import { logout } from "feature/auth/authSlice";
 import SearchIcon from "@mui/icons-material/Search";
+import useSocket from "hook/useSocket";
 
 const ToolBar = () => {
   const style = useToolBarStyle();
+  const { disconnect } = useSocket();
   const dispatch = useDispatch<AppDispatch>();
   const navigator = useNavigate();
 
   const logoutHandler = async () => {
     await dispatch(logout());
+    await disconnect();
     navigator("/app");
   };
 

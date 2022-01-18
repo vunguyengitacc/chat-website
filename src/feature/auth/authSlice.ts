@@ -6,9 +6,9 @@ import {
   PayloadAction,
 } from "@reduxjs/toolkit";
 import { RootState } from "app/reduxStore";
-import authApi from "../../api/authApi";
-import userApi from "../../api/userApi";
-import { IUser } from "../../model/User";
+import authApi from "api/authApi";
+import userApi from "api/userApi";
+import { IUser } from "model/User";
 
 export const login = createAsyncThunk(
   "auth/login",
@@ -62,12 +62,14 @@ interface AuthState {
   currentUser: IUser | null;
   isAuth: boolean;
   friends: EntityState<IUser>;
+  filterFriend: string;
 }
 
 const initialState: AuthState = {
   currentUser: null,
   isAuth: false,
   friends: friendsAdapter.getInitialState(),
+  filterFriend: "",
 };
 
 const authSlice = createSlice({
@@ -84,6 +86,9 @@ const authSlice = createSlice({
     },
     removeFriend: (state, { payload }: PayloadAction<IUser>) => {
       friendsAdapter.removeOne(state.friends, payload.id.toString());
+    },
+    setFilterFriend: (state, { payload }: PayloadAction<string>) => {
+      state.filterFriend = payload;
     },
   },
   extraReducers: (builder) => {
@@ -149,5 +154,5 @@ const authSlice = createSlice({
 
 const { reducer: authReducer, actions } = authSlice;
 
-export const { logout, addFriend, removeFriend } = actions;
+export const { logout, addFriend, removeFriend, setFilterFriend } = actions;
 export default authReducer;

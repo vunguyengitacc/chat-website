@@ -22,7 +22,7 @@ const useFriendReviewStyle = makeStyles({
     gap: "10px",
     flexDirection: "column",
     alignItems: "center",
-    marginBottom: "20px",
+    borderRadius: 0,
   },
   avatar: {
     width: "100px",

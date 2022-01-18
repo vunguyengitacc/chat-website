@@ -7,9 +7,16 @@ import RoomItem from "../RoomItem";
 import useRoomListStyle from "./style";
 
 const RoomList = () => {
-  const rooms = useSelector((state: RootState) =>
-    roomSelector.selectAll(state)
+  const filter = useSelector(
+    (state: RootState) => state.roomReducer.roomFilter
   );
+  const rooms = useSelector((state: RootState) => {
+    let rs = roomSelector.selectAll(state);
+    if (filter === "") return rs;
+    return rs.filter((i) =>
+      i.name.toLowerCase().includes(filter.toLowerCase())
+    );
+  });
   const style = useRoomListStyle();
   return (
     <Box className={style.surface}>

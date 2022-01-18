@@ -26,6 +26,7 @@ export const getMessageInRoom = createAsyncThunk(
 );
 
 interface IChatState {
+  roomFilter: string;
   alreadyFetch: Number[];
   rooms: EntityState<IRoom>;
   messages: EntityState<IMessage>;
@@ -48,6 +49,7 @@ export const messageSelector = messageAdapter.getSelectors(
 );
 
 const initialState: IChatState = {
+  roomFilter: "",
   alreadyFetch: [],
   messages: messageAdapter.getInitialState(),
   rooms: roomAdapter.getInitialState(),
@@ -72,6 +74,9 @@ const roomSlice = createSlice({
         messageAdapter.addOne(state.messages, payload);
       }
     },
+    setRoomFilter: (state, { payload }: PayloadAction<string>) => {
+      state.roomFilter = payload;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(getMyRoom.rejected, (state) => {});
@@ -87,7 +92,7 @@ const roomSlice = createSlice({
     builder.addCase(
       getMessageInRoom.fulfilled,
       (state, { payload }: PayloadAction<{ data: IMessage[]; id: Number }>) => {
-        messageAdapter.setAll(state.messages, payload.data);
+        messageAdapter.addMany(state.messages, payload.data);
         state.alreadyFetch.push(payload.id);
       }
     );
@@ -95,5 +100,5 @@ const roomSlice = createSlice({
 });
 const { reducer: roomReducer, actions } = roomSlice;
 
-export const { addOneRoom, removeOneRoom, addMessage } = actions;
+export const { addOneRoom, removeOneRoom, addMessage, setRoomFilter } = actions;
 export default roomReducer;

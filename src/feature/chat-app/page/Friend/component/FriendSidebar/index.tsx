@@ -14,9 +14,18 @@ const FriendSidebar = () => {
   const [renderValue, setRenderValue] = useState<FlexObject<IUser>>({});
   const [isAlone, setIsAlone] = useState<boolean>(true);
 
-  const friends = useSelector((state: RootState) =>
-    friendsSelector.selectAll(state)
+  const filterFriend = useSelector(
+    (state: RootState) => state.authReducer.filterFriend
   );
+  const friends = useSelector((state: RootState) => {
+    if (filterFriend !== "")
+      return friendsSelector
+        .selectAll(state)
+        .filter((i) =>
+          i.name.toLowerCase().includes(filterFriend.toLowerCase())
+        );
+    return friendsSelector.selectAll(state);
+  });
 
   useEffect(() => {
     setRenderValue(listUserGroupByFirstChar(friends));

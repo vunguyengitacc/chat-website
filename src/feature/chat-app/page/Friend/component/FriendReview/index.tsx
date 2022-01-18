@@ -6,10 +6,10 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { RootState } from "app/reduxStore";
-import { friendsSelector } from "feature/auth/authSlice";
+import { AppDispatch, RootState } from "app/reduxStore";
+import { friendsSelector, removeFriend } from "feature/auth/authSlice";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
 import useFriendReviewStyle from "./style";
 import AbcIcon from "@mui/icons-material/Abc";
@@ -23,15 +23,20 @@ import BlockIcon from "@mui/icons-material/Block";
 import toast from "react-hot-toast";
 import roomApi from "api/roomApi";
 import { LoadingButton } from "@mui/lab";
+import ProfileFormBox from "feature/chat-app/page/User/component/ProfileFormBox";
+import userApi from "api/userApi";
 
 const FriendReview = () => {
   const [isLoad, setIsLoad] = useState<boolean>(false);
+  const [isLoadRemove, setIsLoadRemove] = useState<boolean>(false);
+  const [isLoadBlock, setIsLoadBlock] = useState<boolean>(false);
 
   const { friendId } = useParams();
   const friend = useSelector((state: RootState) =>
     friendsSelector.selectById(state, Number(friendId))
   );
 
+  const dispatch = useDispatch<AppDispatch>();
   const style = useFriendReviewStyle();
   const navigator = useNavigate();
 
@@ -45,6 +50,19 @@ const FriendReview = () => {
       if (friend === undefined) return;
       const room = await roomApi.getFriendRoomById({ userId: friend?.id });
       room.data !== null && navigator(`/app/chat/${room.data.id}`);
+    } catch (error: any) {
+      setIsLoad(false);
+      toast.error(error.message);
+    }
+  };
+
+  const removeFriendHandler = async () => {
+    try {
+      if (friend === undefined) return;
+      setIsLoadRemove(true);
+      await userApi.removeFriend(friend.id);
+      navigator("/app/friend");
+      dispatch(removeFriend(friend));
     } catch (error: any) {
       setIsLoad(false);
       toast.error(error.message);
@@ -73,62 +91,73 @@ const FriendReview = () => {
           Let's Chat
         </LoadingButton>
       </Card>
-      <Card variant="outlined" className={style.inforCard}>
-        <ReviewItem label="Name" value={friend?.name ?? "None"}>
-          <AbcIcon />
-        </ReviewItem>
-        <ReviewItem label="Email" value={friend?.email ?? "None"}>
-          <EmailIcon />
-        </ReviewItem>
-        <ReviewItem label="Phone" value={friend?.phone ?? "None"}>
-          <LocalPhoneIcon />
-        </ReviewItem>
-        <ReviewItem label="Address" value={friend?.address ?? "None"}>
-          <HomeIcon />
-        </ReviewItem>
-      </Card>
-      <Card variant="outlined" className={style.inforCard}>
-        <Box
-          width="100%"
-          display="flex"
-          alignItems="center"
-          padding="10px"
-          justifyContent="space-between"
-        >
-          <Typography variant="subtitle2">
-            <b>Remove friend</b>
-          </Typography>
-          <Button
-            startIcon={<PersonRemoveIcon />}
-            variant="contained"
-            color="error"
-            disableElevation
-            className={style.btnAction}
-          >
-            Remove
-          </Button>
-        </Box>
-        <Box
-          width="100%"
-          display="flex"
-          alignItems="center"
-          padding="10px"
-          justifyContent="space-between"
-        >
-          <Typography variant="subtitle2">
-            <b>Block user</b>
-          </Typography>
-          <Button
-            startIcon={<BlockIcon />}
-            variant="contained"
-            color="error"
-            disableElevation
-            className={style.btnAction}
-          >
-            Block
-          </Button>
-        </Box>
-      </Card>
+      <Box marginBottom="20px">
+        <ProfileFormBox name="Profiles" desc="User's base information">
+          <Card variant="outlined" className={style.inforCard}>
+            <ReviewItem label="Name" value={friend?.name ?? "None"}>
+              <AbcIcon />
+            </ReviewItem>
+            <ReviewItem label="Email" value={friend?.email ?? "None"}>
+              <EmailIcon />
+            </ReviewItem>
+            <ReviewItem label="Phone" value={friend?.phone ?? "None"}>
+              <LocalPhoneIcon />
+            </ReviewItem>
+            <ReviewItem label="Address" value={friend?.address ?? "None"}>
+              <HomeIcon />
+            </ReviewItem>
+          </Card>
+        </ProfileFormBox>
+      </Box>
+
+      <Box marginBottom="20px">
+        <ProfileFormBox name="Activities" desc="Remove or block this user">
+          <Card variant="outlined" className={style.inforCard}>
+            <Box
+              width="100%"
+              display="flex"
+              alignItems="center"
+              padding="10px"
+              justifyContent="space-between"
+            >
+              <Typography variant="subtitle2">
+                <b>Remove friend</b>
+              </Typography>
+              <LoadingButton
+                startIcon={<PersonRemoveIcon />}
+                variant="contained"
+                color="error"
+                disableElevation
+                className={style.btnAction}
+                loading={isLoadRemove}
+                onClick={removeFriendHandler}
+              >
+                Remove
+              </LoadingButton>
+            </Box>
+            <Box
+              width="100%"
+              display="flex"
+              alignItems="center"
+              padding="10px"
+              justifyContent="space-between"
+            >
+              <Typography variant="subtitle2">
+                <b>Block user</b>
+              </Typography>
+              <Button
+                startIcon={<BlockIcon />}
+                variant="contained"
+                color="error"
+                disableElevation
+                className={style.btnAction}
+              >
+                Block
+              </Button>
+            </Box>
+          </Card>
+        </ProfileFormBox>
+      </Box>
     </Box>
   );
 };
