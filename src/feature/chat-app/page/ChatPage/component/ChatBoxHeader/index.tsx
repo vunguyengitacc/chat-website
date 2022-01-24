@@ -10,6 +10,7 @@ import { IRoom } from "model/Room";
 import React from "react";
 import useChatBoxHeaderStyle from "./style";
 import SettingsIcon from "@mui/icons-material/Settings";
+import getAvatar from "utility/avatar";
 
 interface IProps {
   room?: IRoom;
@@ -22,12 +23,7 @@ const ChatBoxHeader: React.FC<IProps> = ({ room, setOpenDrawer }) => {
     <Box className={style.surface}>
       <Stack flexDirection="row" alignItems="center" gap="15px">
         <Badge overlap="circular" variant="dot" color="success">
-          <Avatar
-            src={
-              room?.coverImage ??
-              `https://avatars.dicebear.com/4.5/api/initials/${room?.name}.svg`
-            }
-          />
+          <Avatar src={getAvatar(room?.coverImage, room?.name)} />
         </Badge>
         <Stack>
           <Typography variant="subtitle1">{room?.name}</Typography>

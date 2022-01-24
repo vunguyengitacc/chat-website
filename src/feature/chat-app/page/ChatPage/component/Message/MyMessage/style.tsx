@@ -11,10 +11,9 @@ const useMyMessageStyle = makeStyles({
   messsage: {
     maxWidth: "70%",
     textAlign: "end",
-    backgroundColor: "#7851cc",
+    backgroundColor: "#e5efff",
     padding: "20px",
-    color: "white",
-    fontWeight: 700,
+    fontWeight: 500,
     borderRadius: "10px",
     margin: "10px 0 10px 0",
   },

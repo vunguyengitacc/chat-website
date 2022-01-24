@@ -1,3 +1,4 @@
+import RoomType from "utility/enum";
 import { IMember } from "./Member";
 import { IMessage } from "./Message";
 
@@ -9,4 +10,5 @@ export interface IRoom {
   memberIds: Number[];
   messageIds: Number[];
   lastMessage?: IMessage;
+  type: RoomType;
 }

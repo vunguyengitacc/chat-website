@@ -66,7 +66,7 @@ const UpdateInforForm = () => {
       </Grid>
       <Box className={style.submitField}>
         <Box display="flex" gap="20px">
-          <Button variant="text" color="secondary" disableElevation>
+          <Button variant="text" disableElevation>
             Reset
           </Button>
           <LoadingButton
@@ -74,7 +74,6 @@ const UpdateInforForm = () => {
             loading={isLoad}
             variant="contained"
             disableElevation
-            color="secondary"
           >
             Save changes
           </LoadingButton>

@@ -10,6 +10,7 @@ const useChatBoxStyle = makeStyles({
   messageBox: {
     flex: 1,
     overflowY: "scroll",
+    backgroundColor: "#f4f5f7",
   },
   sender: {
     width: "100%",

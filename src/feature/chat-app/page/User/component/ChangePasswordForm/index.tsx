@@ -65,7 +65,7 @@ const ChangePasswordForm = () => {
       </Grid>
       <Box className={style.submitField}>
         <Box display="flex" gap="20px">
-          <Button variant="text" color="secondary" disableElevation>
+          <Button variant="text" disableElevation>
             Reset
           </Button>
           <LoadingButton
@@ -73,7 +73,6 @@ const ChangePasswordForm = () => {
             loading={isLoad}
             variant="contained"
             disableElevation
-            color="secondary"
           >
             Save changes
           </LoadingButton>

@@ -22,7 +22,9 @@ const FriendHeader = () => {
     <Box className={style.surface}>
       <Box className={style.headerField}>
         <Box>
-          <Typography variant="h5">Friends</Typography>
+          <Typography variant="h5">
+            <b>Friends</b>
+          </Typography>
         </Box>
         <Box></Box>
       </Box>
@@ -30,7 +32,7 @@ const FriendHeader = () => {
         <Box width="100%">
           <InputBase
             sx={{
-              border: "solid .5px #e7e7e7",
+              border: "solid 2px #e7e7e7",
               padding: "5px",
               borderRadius: "3px",
             }}

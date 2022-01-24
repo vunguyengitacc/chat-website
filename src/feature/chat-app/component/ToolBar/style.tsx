@@ -5,7 +5,7 @@ const useToolBarStyle = makeStyles({
   surface: {
     width: "5vw",
     height: "100vh",
-    backgroundColor: "#7851cc",
+    backgroundColor: "#0091ff",
     display: "flex",
     flexDirection: "column",
     justifyContent: "space-between",
@@ -29,11 +29,11 @@ const useToolBarStyle = makeStyles({
 });
 
 export const activeStyle: CSSProperties = {
-  backgroundColor: "#5b3aa3",
+  backgroundColor: "#006edc",
   padding: "10%",
   borderRadius: "10px",
   backgroundClip: "content-box",
-  color: "rgb(137 101 217)",
+  color: "#0091ff",
 };
 
 export default useToolBarStyle;

@@ -3,7 +3,9 @@ import { IRoom } from "../model/Room";
 import axiosClient from "./axiosClient";
 
 const roomApi = {
-  create(payload: IRoom): Promise<IResponse<IRoom>> {
+  create(
+    payload: Pick<IRoom, "memberIds" | "name" | "type">
+  ): Promise<IResponse<IRoom>> {
     return axiosClient.post("/rooms", payload);
   },
   getMyRooms(): Promise<IResponse<IRoom[]>> {

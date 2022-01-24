@@ -53,15 +53,10 @@ const UpdatePrivacyForm = () => {
       </Grid>
       <Box className={style.submitField}>
         <Box display="flex" gap="20px">
-          <Button variant="text" color="secondary" disableElevation>
+          <Button variant="text" disableElevation>
             Reset
           </Button>
-          <LoadingButton
-            loading={isLoad}
-            variant="contained"
-            disableElevation
-            color="secondary"
-          >
+          <LoadingButton loading={isLoad} variant="contained" disableElevation>
             Save changes
           </LoadingButton>
         </Box>

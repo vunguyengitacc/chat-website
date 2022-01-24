@@ -25,6 +25,14 @@ export const getMessageInRoom = createAsyncThunk(
   }
 );
 
+export const createRoom = createAsyncThunk(
+  "room/create",
+  async (payload: Pick<IRoom, "memberIds" | "name" | "type">) => {
+    const res = await roomApi.create(payload);
+    return res.data;
+  }
+);
+
 interface IChatState {
   roomFilter: string;
   alreadyFetch: Number[];
@@ -94,6 +102,14 @@ const roomSlice = createSlice({
       (state, { payload }: PayloadAction<{ data: IMessage[]; id: Number }>) => {
         messageAdapter.addMany(state.messages, payload.data);
         state.alreadyFetch.push(payload.id);
+      }
+    );
+    builder.addCase(createRoom.rejected, (state) => {});
+    builder.addCase(createRoom.pending, (state) => {});
+    builder.addCase(
+      createRoom.fulfilled,
+      (state, { payload }: PayloadAction<IRoom>) => {
+        roomAdapter.addOne(state.rooms, payload);
       }
     );
   },

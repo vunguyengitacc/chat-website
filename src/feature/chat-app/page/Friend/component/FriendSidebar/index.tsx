@@ -62,7 +62,7 @@ const FriendSidebar = () => {
               </Box>
             );
           })}
-        {isAlone && <>You don't have any friend</>}
+        {isAlone && <>None to show</>}
       </Box>
     </Box>
   );

@@ -1,12 +1,12 @@
 import { Avatar, Box, Typography } from "@mui/material";
 import React from "react";
 import useRoomItemStyle, { activeRoomCSS } from "./style";
-import { toSimpleString } from "utility/string";
 import { NavLink } from "react-router-dom";
 import { IRoom } from "model/Room";
 import { useSelector } from "react-redux";
 import { RootState } from "app/reduxStore";
 import { getTimeDistance } from "utility/msg-date";
+import getAvatar from "utility/avatar";
 
 interface IProps {
   value: IRoom;
@@ -28,10 +28,7 @@ const RoomItem: React.FC<IProps> = ({ value }) => {
         <Box className={style.avatarField}>
           <Avatar
             sx={{ height: "60px", width: "60px" }}
-            src={
-              value.coverImage ??
-              `https://avatars.dicebear.com/4.5/api/initials/${value.name}.svg`
-            }
+            src={getAvatar(value.coverImage, value.name)}
           />
         </Box>
 

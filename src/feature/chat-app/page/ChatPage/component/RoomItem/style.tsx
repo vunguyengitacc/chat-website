@@ -47,7 +47,7 @@ const useRoomItemStyle = makeStyles({
 });
 
 export const activeRoomCSS: CSSProperties = {
-  backgroundColor: "rgb(233 222 243)",
+  backgroundColor: "#e5efff",
 };
 
 export default useRoomItemStyle;

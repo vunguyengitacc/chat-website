@@ -32,7 +32,6 @@ const AllResult = () => {
         setUsers(res.data);
       } catch (error: any) {
         setIsSearching(false);
-        console.log(error.message);
       }
     })();
   }, [searchParams]);

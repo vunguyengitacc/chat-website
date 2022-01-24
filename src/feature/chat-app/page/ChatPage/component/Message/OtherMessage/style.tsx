@@ -16,7 +16,7 @@ const useOtherMessageStyle = makeStyles({
     alignItems: "flex-start",
   },
   messsage: {
-    backgroundColor: "#e9e9e9",
+    backgroundColor: "white",
     padding: "20px",
     color: "#878787",
     fontWeight: 700,

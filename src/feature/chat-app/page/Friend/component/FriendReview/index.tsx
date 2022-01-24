@@ -1,11 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  IconButton,
-  Typography,
-} from "@mui/material";
+import { Avatar, Box, Button, Card, Typography } from "@mui/material";
 import { AppDispatch, RootState } from "app/reduxStore";
 import { friendsSelector, removeFriend } from "feature/auth/authSlice";
 import React, { useEffect, useState } from "react";
@@ -25,6 +18,7 @@ import roomApi from "api/roomApi";
 import { LoadingButton } from "@mui/lab";
 import ProfileFormBox from "feature/chat-app/page/User/component/ProfileFormBox";
 import userApi from "api/userApi";
+import getAvatar from "utility/avatar";
 
 const FriendReview = () => {
   const [isLoad, setIsLoad] = useState<boolean>(false);
@@ -74,16 +68,12 @@ const FriendReview = () => {
       <Card variant="outlined" className={style.card}>
         <Avatar
           className={style.avatar}
-          src={
-            friend?.avatarURI ??
-            `https://avatars.dicebear.com/4.5/api/initials/${friend?.name}.svg`
-          }
+          src={getAvatar(friend?.avatarURI, friend?.name)}
         />
         <Typography variant="h5">{friend?.name}</Typography>
         <LoadingButton
           loading={isLoad}
           startIcon={<ChatIcon />}
-          color="secondary"
           variant="contained"
           disableElevation
           onClick={navigateToRoom}

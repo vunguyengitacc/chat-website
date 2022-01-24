@@ -36,7 +36,6 @@ const SearchBar = () => {
         <Button
           sx={{ height: "44px", width: "20%" }}
           variant="contained"
-          color="secondary"
           disableElevation
           type="submit"
         >

@@ -11,13 +11,13 @@ const useFriendSidebarStyle = makeStyles({
   },
   header: {
     width: "100%",
-    height: "12.5%",
+    height: "120px",
     backgroundColor: "white",
     borderBottom: "solid .5px #e7e7e7",
   },
   list: {
     width: "100%",
-    height: "87.5%",
+    height: "calc(100vh - 120px)",
     display: "flex",
     flexDirection: "column",
     padding: "15px",

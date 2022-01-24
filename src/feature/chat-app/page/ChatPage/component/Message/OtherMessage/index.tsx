@@ -1,6 +1,7 @@
-import { Avatar, Box, Typography } from "@mui/material";
+import { Avatar, Box, Paper, Typography } from "@mui/material";
 import { IMessage } from "model/Message";
 import React, { useState } from "react";
+import getAvatar from "utility/avatar";
 import { getTimeDistance, getTimeWithDistance } from "utility/msg-date";
 import useOtherMessageStyle from "./style";
 
@@ -43,10 +44,7 @@ const OtherMessage: React.FC<IProps> = ({ value, nextMsg, oldMsg }) => {
       {isRenderAvatar && (
         <Avatar
           className={style.avatar}
-          src={
-            value.owner.avatarURI ??
-            `https://avatars.dicebear.com/4.5/api/initials/${value.owner.name}.svg`
-          }
+          src={getAvatar(value.owner.avatarURI, value.owner.name)}
         />
       )}
       <Box

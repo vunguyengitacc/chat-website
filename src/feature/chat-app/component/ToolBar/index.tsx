@@ -50,7 +50,7 @@ const ToolBar = () => {
         </NavLink>
         <NavLink
           style={({ isActive }) => (isActive ? activeStyle : {})}
-          className={style.linkMatch}
+          className={style.link}
           to="/app/me"
         >
           <AccountCircleIcon />

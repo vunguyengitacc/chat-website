@@ -20,7 +20,6 @@ const useSocket = () => {
     stomp.onConnect = () => {
       channels.forEach((i) => {
         stomp.subscribe(`/room/${i.id}`, (message) => {
-          console.log("message");
           try {
             let payload = JSON.parse(message.body) as IMessage;
             dispatch(addMessage(payload));

@@ -21,7 +21,7 @@ const useFriendItemStyle = makeStyles({
 });
 
 export const activeFriendCSS: CSSProperties = {
-  backgroundColor: "rgb(138 108 203)",
+  backgroundColor: "rgb(25, 118, 210)",
   color: "white",
 };
 
