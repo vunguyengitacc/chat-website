@@ -13,6 +13,7 @@ const FastSearchSidebar = () => {
           <b>Convenient searchs</b>
         </Typography>
       </Box>
+      <LinkSearch to="convenient/suggest" text="Suggest friend" />
       <LinkSearch to="convenient/request" text="Ask to be friend" />
       <LinkSearch to="convenient/wait" text="Waiting friend request" />
       <LinkSearch to="convenient/join" text="Waiting accept join" />

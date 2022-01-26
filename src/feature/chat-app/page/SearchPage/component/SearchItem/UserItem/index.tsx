@@ -46,6 +46,12 @@ const UserItem: React.FC<IProps> = ({ value }) => {
   const dispatch = useDispatch<AppDispatch>();
   const style = useUserSearchItemStyle();
 
+  const getSameFriend = () => {
+    return (currentUser?.friends as Number[]).filter((i) =>
+      (value.friends as Number[]).includes(i)
+    ).length;
+  };
+
   const sendRequestHandler = async () => {
     let toastId = toast.loading("Loading");
     try {
@@ -138,6 +144,9 @@ const UserItem: React.FC<IProps> = ({ value }) => {
                 <i>This user is your friend</i>
               </Typography>
             )}
+            <Typography variant="body1">
+              <i>{getSameFriend()} same friend</i>
+            </Typography>
           </Stack>
         </Stack>
 

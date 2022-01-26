@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import searchApi from "api/searchApi";
 import userApi from "api/userApi";
 import { IUser } from "model/User";
 import React, { useEffect, useState } from "react";
@@ -19,6 +20,9 @@ const FastQuery = () => {
         let res;
         if (type === "wait") {
           res = await userApi.getWait();
+          setUsers(res.data);
+        } else if (type === "suggest") {
+          res = await searchApi.suggest();
           setUsers(res.data);
         } else if (type === "request") {
           res = await userApi.getRequest();

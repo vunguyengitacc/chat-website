@@ -1,4 +1,5 @@
 import { Box } from "@mui/material";
+import searchApi from "api/searchApi";
 import userApi from "api/userApi";
 import { IUser } from "model/User";
 import React, { useEffect, useState } from "react";
@@ -23,7 +24,7 @@ const UserResult = () => {
       }
       try {
         setIsSearching(true);
-        let res = await userApi.search({ term });
+        let res = await searchApi.searchUser({ term });
         setIsSearching(false);
         setUsers(res.data);
       } catch (error: any) {

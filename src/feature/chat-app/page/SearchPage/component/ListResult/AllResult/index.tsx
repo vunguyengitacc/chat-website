@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import userApi from "api/userApi";
+import searchApi from "api/searchApi";
 import { IRoom } from "model/Room";
 import { IUser } from "model/User";
 import React, { useEffect, useState } from "react";
@@ -27,7 +27,7 @@ const AllResult = () => {
       }
       try {
         setIsSearching(true);
-        let res = await userApi.search({ term });
+        let res = await searchApi.searchUser({ term });
         setIsSearching(false);
         setUsers(res.data);
       } catch (error: any) {

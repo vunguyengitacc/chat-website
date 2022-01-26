@@ -17,9 +17,6 @@ const roomApi = {
   getById(payload: Pick<IRoom, "id">): Promise<IResponse<IRoom>> {
     return axiosClient.get(`/rooms/${payload.id}`);
   },
-  search(payload: any): Promise<IResponse<IRoom[]>> {
-    return axiosClient.get("/rooms/search", { params: payload });
-  },
   deleteOne(payload: Pick<IRoom, "id">): Promise<IResponse<Number>> {
     return axiosClient.delete(`/rooms/${payload.id}`);
   },
