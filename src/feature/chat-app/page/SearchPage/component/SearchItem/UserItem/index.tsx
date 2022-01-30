@@ -120,7 +120,12 @@ const UserItem: React.FC<IProps> = ({ value }) => {
 
   return (
     <Card className={style.surface}>
-      <Stack direction="row" justifyContent="space-between" gap="20px">
+      <Stack
+        alignItems="center"
+        direction="row"
+        justifyContent="space-between"
+        gap="20px"
+      >
         <Stack
           direction="row"
           gap="20px"

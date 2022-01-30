@@ -1,6 +1,7 @@
 import { Box } from "@mui/material";
 import searchApi from "api/searchApi";
 import userApi from "api/userApi";
+import { IRoom } from "model/Room";
 import { IUser } from "model/User";
 import React, { useEffect, useState } from "react";
 import { useSearchParams, useParams } from "react-router-dom";
@@ -10,6 +11,7 @@ import useFastQueryStyle from "./style";
 const FastQuery = () => {
   const { type } = useParams();
   const [users, setUsers] = useState<IUser[]>([]);
+  const [rooms, setRooms] = useState<IRoom[]>([]);
   const [isSearching, setIsSearching] = useState<boolean>(false);
   const style = useFastQueryStyle();
 
@@ -18,15 +20,21 @@ const FastQuery = () => {
       try {
         setIsSearching(true);
         let res;
-        if (type === "wait") {
-          res = await userApi.getWait();
-          setUsers(res.data);
-        } else if (type === "suggest") {
-          res = await searchApi.suggest();
-          setUsers(res.data);
-        } else if (type === "request") {
-          res = await userApi.getRequest();
-          setUsers(res.data);
+        switch (type) {
+          case "wait":
+            res = await userApi.getWait();
+            setUsers(res.data);
+            break;
+          case "suggest":
+            res = await searchApi.suggest();
+            setUsers(res.data);
+            break;
+          case "request":
+            res = await userApi.getRequest();
+            setUsers(res.data);
+            break;
+          default:
+            break;
         }
         setIsSearching(false);
       } catch (error: any) {

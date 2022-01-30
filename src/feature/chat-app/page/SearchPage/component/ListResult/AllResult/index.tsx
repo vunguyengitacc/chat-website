@@ -21,15 +21,15 @@ const AllResult = () => {
     (async () => {
       let term = searchParams.get("term");
       if (term === null || term === "") {
-        console.log(term);
         setIsSearching(false);
         return;
       }
       try {
         setIsSearching(true);
-        let res = await searchApi.searchUser({ term });
+        let res = await searchApi.search({ term });
         setIsSearching(false);
-        setUsers(res.data);
+        setUsers(res.data.users);
+        setRooms(res.data.rooms);
       } catch (error: any) {
         setIsSearching(false);
       }

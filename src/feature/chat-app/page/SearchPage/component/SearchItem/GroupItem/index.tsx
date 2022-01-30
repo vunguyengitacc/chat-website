@@ -1,12 +1,4 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Card,
-  IconButton,
-  Stack,
-  Typography,
-} from "@mui/material";
+import { Avatar, Card, IconButton, Stack, Typography } from "@mui/material";
 import React from "react";
 import useGroupSearchItemStyle from "./style";
 import PersonAddAltIcon from "@mui/icons-material/PersonAddAlt";
@@ -31,7 +23,6 @@ const GroupItem: React.FC<IProps> = ({ value }) => {
             </Typography>
           </Stack>
         </Stack>
-
         <Stack justifyContent="center">
           <IconButton>
             <PersonAddAltIcon />
