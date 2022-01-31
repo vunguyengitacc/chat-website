@@ -23,7 +23,7 @@ const ChatBoxHeader: React.FC<IProps> = ({ room, setOpenDrawer }) => {
     <Box className={style.surface}>
       <Stack flexDirection="row" alignItems="center" gap="15px">
         <Badge overlap="circular" variant="dot" color="success">
-          <Avatar src={getAvatar(room?.coverImage, room?.name)} />
+          <Avatar src={getAvatar(room?.coverImage[0], room?.name)} />
         </Badge>
         <Stack>
           <Typography variant="subtitle1">{room?.name}</Typography>

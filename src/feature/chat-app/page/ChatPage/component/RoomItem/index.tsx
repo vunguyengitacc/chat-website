@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { RootState } from "app/reduxStore";
 import { getTimeDistance } from "utility/msg-date";
 import getAvatar from "utility/avatar";
+import RoomAvatar from "feature/chat-app/component/RoomAvatar";
 
 interface IProps {
   value: IRoom;
@@ -26,12 +27,8 @@ const RoomItem: React.FC<IProps> = ({ value }) => {
     >
       <Box className={style.roomContent}>
         <Box className={style.avatarField}>
-          <Avatar
-            sx={{ height: "60px", width: "60px" }}
-            src={getAvatar(value.coverImage, value.name)}
-          />
+          <RoomAvatar coverImage={value.coverImage} />
         </Box>
-
         <Box className={style.roomInfor}>
           <Box className={style.topField}>
             <Box className={style.nameField}>

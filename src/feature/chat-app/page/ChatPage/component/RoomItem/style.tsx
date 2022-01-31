@@ -24,6 +24,7 @@ const useRoomItemStyle = makeStyles({
   },
   avatarField: {
     width: "20%",
+    height: "100%",
   },
   topField: {
     height: "40%",

@@ -6,7 +6,7 @@ export interface IRoom {
   id: Number;
   name: string;
   createdDate: Date;
-  coverImage: string;
+  coverImage: string[];
   memberIds: Number[];
   messageIds: Number[];
   lastMessage?: IMessage;
