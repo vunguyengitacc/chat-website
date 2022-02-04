@@ -7,7 +7,7 @@ import { createRoom } from "feature/chat-app/roomSlice";
 import { IRoom } from "model/Room";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import RoomType from "utility/enum";
+import RoomType from "utility/enum/roomType";
 import useRoomCreatorStyle from "./style";
 
 interface IProps {

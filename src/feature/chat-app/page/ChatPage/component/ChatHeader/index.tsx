@@ -54,7 +54,9 @@ const Header = () => {
         />
       </Box>
       <Modal open={openCreator} onClose={() => setOpenCreator(false)}>
-        <RoomCreator onClose={setOpenCreator} />
+        <Box>
+          <RoomCreator onClose={setOpenCreator} />
+        </Box>
       </Modal>
     </Box>
   );

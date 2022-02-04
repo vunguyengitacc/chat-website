@@ -9,6 +9,7 @@ import ChatBoxHeader from "../ChatBoxHeader";
 import useChatBoxStyle from "./style";
 import MessageBox from "../MessageBox";
 import MessageSender from "../MessageSender";
+import RoomProfile from "../RoomProfile";
 
 const ChatBox = () => {
   const [isOpenDrawer, setIsOpenDrawer] = useState<boolean>(false);
@@ -55,6 +56,9 @@ const ChatBox = () => {
           <IconButton onClick={() => setIsOpenDrawer(false)}>
             <CloseIcon />
           </IconButton>
+        </Box>
+        <Box className={style.content}>
+          {room && <RoomProfile roomId={room.id} />}
         </Box>
       </Drawer>
     </Box>

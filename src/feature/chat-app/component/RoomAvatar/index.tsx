@@ -21,7 +21,7 @@ const RoomAvatar: React.FC<IProps> = ({ coverImage }) => {
         if (index > 3) return <></>;
         if (index == 3)
           return (
-            <Box display="inline-block" width={size} height={size}>
+            <Box key={index} display="inline-block" width={size} height={size}>
               <Avatar
                 className={style.avatar}
                 src={`https://avatars.dicebear.com/4.5/api/initials/${
@@ -31,7 +31,7 @@ const RoomAvatar: React.FC<IProps> = ({ coverImage }) => {
             </Box>
           );
         return (
-          <Box display="inline-block" width={size} height={size}>
+          <Box key={index} display="inline-block" width={size} height={size}>
             <Avatar className={style.avatar} src={i} />
           </Box>
         );

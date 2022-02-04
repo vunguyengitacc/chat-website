@@ -1,4 +1,4 @@
-import RoomType from "utility/enum";
+import RoomType from "utility/enum/roomType";
 import { IMember } from "./Member";
 import { IMessage } from "./Message";
 

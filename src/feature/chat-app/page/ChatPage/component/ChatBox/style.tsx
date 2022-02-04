@@ -18,6 +18,10 @@ const useChatBoxStyle = makeStyles({
     borderTop: "solid 1px #e7e7e7",
   },
   //Drawer
+  paper: {
+    borderLeft: "solid 2px #e7e7e7",
+    boxShadow: "none",
+  },
   menu: {
     width: "30vw",
     display: "flex",
@@ -27,9 +31,8 @@ const useChatBoxStyle = makeStyles({
     padding: "1vw",
     borderBottom: "solid .5px #e7e7e7",
   },
-  paper: {
-    borderLeft: "solid 2px #e7e7e7",
-    boxShadow: "none",
+  content: {
+    height: "calc( 100vh - 80px )",
   },
 });
 
