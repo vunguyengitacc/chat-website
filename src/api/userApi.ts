@@ -37,7 +37,7 @@ const userApi = {
     return axiosClient.delete(`/users/me/request/${payload}`);
   },
   cancelRequest(payload: Number): Promise<IResponse<any>> {
-    return axiosClient.delete(`/users/me/request/${payload}/cancel`);
+    return axiosClient.delete(`/users/me/wait/${payload}`);
   },
   removeFriend(payload: Number): Promise<IResponse<any>> {
     return axiosClient.delete(`/users/me/friend/${payload}`);
